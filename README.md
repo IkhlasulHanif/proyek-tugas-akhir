@@ -1,4 +1,4 @@
-### Tugas Kelompok Tengah Semester Pemrograman Berbasis Platform Kelompok D03
+### Tugas Kelompok Akhir Semester Pemrograman Berbasis Platform Kelompok D03
 ---
 # Speak Up Now
 
