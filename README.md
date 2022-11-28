@@ -59,5 +59,10 @@ Pembagian tugas:
 5. Admin page (fitur jawab laporan) oleh Alifia Nadiya Putri
 
 ## Alur pengintegrasian web service
-
+1. Melengkapi endpoint yang akan digunakan pada disetiap modul.
+2. Menambahkan middleware pada aplikasi django agar API dapat diakses dari luar website.
+3. Memmbuat model pada flutter yang akan digunakan untuk menampung data dikirim dari django.
+4. Membuat fungsi asynchronus terutama dalam meload page untuk semua proses baik post maupun get.
+5. Memanfaatkan http.get yang mengarah pada enpoint data pada web untuk proses pengambilan data.
+6. Memanfaatkan http.post yang mengarah pada endpoint penyimpanan/pembuatan data agar data dapat disimpan pada database django.
 
