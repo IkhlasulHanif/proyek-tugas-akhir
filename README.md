@@ -10,10 +10,6 @@
 4. Ikhlasul Akmal Hanif (2106650462)
 5. Fahmi Sabila Firdaus (2106751745)
 
-## Tautan Aplikasi Heroku
-
-https://speak-up-now.herokuapp.com/
-
 ## Deskripsi aplikasi 
 
 Platform (website dan mobile app) yang akan kami kembangkan adalah Speak Up Now. Speak Up Now merupakan portal informasi dan pelaporan pelecehan seksual, dengan mengintegrasikan mobile app dengan website [Speak Up Now Website](https://speak-up-now.herokuapp.com/). Speak Up Now hadir sebagai salah satu bentuk dukungan kami kepada kegiatan G20. Speak Up Now berfokus pada isu employment, gender, education and social policies yang dibahas pada G20. Speak Up Now bertujuan untuk menjadi salah satu penyedia jalan keluar dari masalah yang dihadapi para penyintas pelecehan seksual. Alasan kami memilih Speak Up Now sebagai platform yang kami kembangkan adalah karena kami merasa isu mengenai kejahatan gender, termasuk tindak pelecehan seksual, masih hangat dan perlu untuk digaungkan lebih keras lagi.
