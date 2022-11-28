@@ -14,7 +14,7 @@
 
 https://speak-up-now.herokuapp.com/
 
-## Cerita aplikasi yang diajukan serta manfaatnya
+## Deskripsi aplikasi 
 
 Platform (website dan mobile app) yang akan kami kembangkan adalah Speak Up Now. Speak Up Now merupakan portal informasi dan pelaporan pelecehan seksual, dengan mengintegrasikan mobile app dengan website [Speak Up Now Website](https://speak-up-now.herokuapp.com/). Speak Up Now hadir sebagai salah satu bentuk dukungan kami kepada kegiatan G20. Speak Up Now berfokus pada isu employment, gender, education and social policies yang dibahas pada G20. Speak Up Now bertujuan untuk menjadi salah satu penyedia jalan keluar dari masalah yang dihadapi para penyintas pelecehan seksual. Alasan kami memilih Speak Up Now sebagai platform yang kami kembangkan adalah karena kami merasa isu mengenai kejahatan gender, termasuk tindak pelecehan seksual, masih hangat dan perlu untuk digaungkan lebih keras lagi.
 
@@ -24,25 +24,7 @@ Sementara itu, akses yang dimiliki pengguna biasa antara lain fitur untuk melapo
 
 Kami berharap Speak Up Now dapat menjadi bentuk nyata kami atas penolakan terhadap tindakan pelecehan seksual dalam bentuk apapun di dalam lingkungan kampus Universitas Indonesia.
 
-
-## Daftar modul yang akan diimplementasikan
-
-Beberapa modul yang akan kami implementasikan antara lain:
-1. Home page
-
-   -  Home page terdiri dari navbar FAQ, form laporan anonymous, artikel, sign up, dan login
-
-2. User page
-
-   -  User page terdiri dari navbar form konsultasi dan form laporan
-
-3. Admin page
-
-   -  Admin page terdiri dari navbar form jawab konsultasi, data laporan yang masuk, dan form sign up admin lain
-
-## *Role* atau peran pengguna
-
-Secara umum, akun yang bisa mendaftar di Speak Up Now terbagi menjadi 2, yaitu pengguna dan admin.
+Pengguna aplikasi ini dibagi menjadi dua yaitu:
 
 1. User
    -  Memberikan laporan terhadap kekerasan seksual
@@ -51,5 +33,35 @@ Secara umum, akun yang bisa mendaftar di Speak Up Now terbagi menjadi 2, yaitu p
    -  Melihat dan menanggapi daftar laporan yang diberikan pengguna
    -  Memproses laporan dan memberikan konsultasi
    -  Membuat akun admin baru
-   
-## ![deployment](https://github.com/fahiradh/tugas-kelompok-pbp/actions/workflows/dpl.yml/badge.svg)
+
+
+## Daftar modul yang akan diimplementasikan
+
+Beberapa modul yang akan kami implementasikan antara lain:
+1. Home page
+   -  Fitur login dan sign up
+      Pada fitur ini pengguna dapat mendaftarkan akunnya pada aplikasi. Selain itu pengaturan autentikasi juga diatur dalam fitur ini.
+   -  Landing page
+
+2. User page
+   -  Fitur konsultasi <br>
+      Pada fitur ini pengguna dapat menulis konsultasi terkait kejadian pelecehan seksual yang pernah dialaminya.
+   -  Fitur laporan <br>
+      Pada fitur ini pengguna dapat melaporkan kejadian pelecehan seksual yang dialami orang lain atau pengguna itu sendiri.
+
+3. Admin page
+   - Fitur jawab konsultasi <br>
+     Pada fitur ini admin dapat menjawab konsultasi dari pengguna.
+   - Fitur jawab laporan <br>
+     Pada fitur ini admin dapat mengverfikasi atau memberi respon terhadap laporan yang diberikan pengguna.
+     
+Pembagian tugas:
+1. Home page (fitur login dan sign up) oleh Muhammad Satria Ramadhan
+2. User page (fitur konsultasi) oleh Fahira Adindiah
+3. User page (fitur laporan) oleh Ikhlasul Akmal Hanif 
+4. Admin page (fitur jawab konsultasi) oleh Fahmi Sabila Firdaus
+5. Admin page (fitur jawab laporan) oleh Alifia Nadiya Putri
+
+## Alur pengintegrasian web service
+
+
