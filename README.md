@@ -60,9 +60,22 @@ Beberapa modul yang akan kami implementasikan antara lain:
 
 3. Admin page
    - Fitur jawab konsultasi <br>
-     Pada fitur ini admin dapat menjawab konsultasi dari pengguna.
+     Pada fitur ini admin dapat menjawab konsultasi dari pengguna. Hal yang perlu diimplementasikan:
+     - Get data konsultasi dari web
+     - Page untuk menampilkan data konsultasi dari seluruh user
+     - Delete konsultasi
+     - Page untuk melihat detail konsultasi
+     - Page form reply konsultasi
+     - Post data reply dari form ke web
+     
    - Fitur jawab laporan <br>
-     Pada fitur ini admin dapat mengverfikasi atau memberi respon terhadap laporan yang diberikan pengguna.
+     Pada fitur ini admin dapat mengverfikasi atau memberi respon terhadap laporan yang diberikan pengguna. Hal yang perlu diimplementasikan:
+     - Get data laporan dari web
+     - Page untuk menampilkan data laporan dari seluruh user
+     - Delete laporan
+     - Page untuk melihat detail laporan
+     - Page form reply laporan
+     - Post data reply dari form ke web
      
 Pembagian tugas:
 1. Home page (fitur login dan sign up) oleh Muhammad Satria Ramadhan
