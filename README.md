@@ -51,6 +51,12 @@ Beberapa modul yang akan kami implementasikan antara lain:
       
    -  Fitur laporan <br>
       Pada fitur ini pengguna dapat melaporkan kejadian pelecehan seksual yang dialami orang lain atau pengguna itu sendiri.
+      - Get data laporan dari Web
+      - Page form laporan
+      - Post data dari form ke Web
+      - Page untuk menampilkan data yang difilter terhadap user.
+      - Delete laporan
+      - Page untuk melihat detail laporan
 
 3. Admin page
    - Fitur jawab konsultasi <br>
