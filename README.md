@@ -41,7 +41,7 @@ Beberapa modul yang akan kami implementasikan antara lain:
 
 2. User page
    -  Fitur konsultasi <br>
-      Pada fitur ini pengguna dapat menulis konsultasi terkait kejadian pelecehan seksual yang pernah dialaminya. Fitur yang perlu diimplementasikan:
+      Pada fitur ini pengguna dapat menulis konsultasi terkait kejadian pelecehan seksual yang pernah dialaminya. Hal yang perlu diimplementasikan:
       - Get data dari Web
       - Page form konsultasi
       - Post data dari form ke Web
