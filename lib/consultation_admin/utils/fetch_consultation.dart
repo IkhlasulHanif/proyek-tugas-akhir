@@ -3,7 +3,8 @@ import 'package:http/http.dart' as http;
 import 'package:proyek_tugas_akhir/consultation_admin/model/consultation_model.dart';
 
 Future<List<Consultation>> fetchConsultation() async {
-  var url = Uri.parse('https://speak-up-now.herokuapp.com/curhat-admin/json');
+  var url =
+      Uri.parse('https://web-production-c284.up.railway.app/curhat-admin/json');
   var response = await http.get(
     url,
     headers: {

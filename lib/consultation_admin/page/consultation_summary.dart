@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:proyek_tugas_akhir/consultation_admin/model/consultation_model.dart';
 import 'package:intl/intl.dart';
-
-import '../model/consultation_model.dart';
-import '../utils/fetch_consultation.dart';
+import 'package:proyek_tugas_akhir/consultation_admin/page/consultation_detail.dart';
+import 'package:proyek_tugas_akhir/consultation_admin/utils/fetch_consultation.dart';
 
 class ConsultationSummary extends StatefulWidget {
   const ConsultationSummary({super.key});
@@ -27,6 +27,7 @@ class _ConsultationSummaryState extends State<ConsultationSummary> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Consultation Summary'),
+        backgroundColor: primaryColor,
       ),
       // Menambahkan drawer menu
       // drawer: DrawerClass(parentScreen: ScreenName.MyWatchList),
@@ -40,7 +41,7 @@ class _ConsultationSummaryState extends State<ConsultationSummary> {
                 return Column(
                   children: const [
                     Text(
-                      "Watch List kamu kosong!",
+                      "No consultation from user!",
                       style: TextStyle(color: Color(0xff59A5D8), fontSize: 20),
                     ),
                     SizedBox(height: 8),
@@ -51,36 +52,37 @@ class _ConsultationSummaryState extends State<ConsultationSummary> {
                     itemCount: snapshot.data!.length,
                     itemBuilder: (_, index) => InkWell(
                           onTap: () {
-                            // Navigator.push(
-                            //     context,
-                            //     MaterialPageRoute(
-                            //         builder: (context) => MyWatchlistDetails(
-                            //               title: snapshot
-                            //                   .data![index].fields.title,
-                            //               user:
-                            //                   snapshot.data![index].fields.user,
-                            //               date:
-                            //                   snapshot.data![index].fields.date,
-                            //               name:
-                            //                   snapshot.data![index].fields.name,
-                            //               description: snapshot
-                            //                   .data![index].fields.description,
-                            //             )));
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ConsultationDetail(
+                                          title: snapshot
+                                              .data![index].fields.title,
+                                          user:
+                                              snapshot.data![index].fields.user,
+                                          date:
+                                              snapshot.data![index].fields.date,
+                                          name:
+                                              snapshot.data![index].fields.name,
+                                          description: snapshot
+                                              .data![index].fields.description,
+                                        )));
                           },
                           child: Container(
                             margin: const EdgeInsets.symmetric(
                                 horizontal: 27, vertical: 9),
                             padding: const EdgeInsets.all(20.0),
                             decoration: BoxDecoration(
-                                color: Colors.white,
-                                border: Border(
-                                  bottom: BorderSide(
-                                    width: 2.0,
-                                    color: Color(0xffA5A5A5),
-                                  ),
+                              color: Colors.white,
+                              border: Border(
+                                bottom: BorderSide(
+                                  width: 2.0,
+                                  color: Color(0xffA5A5A5),
                                 ),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10))),
+                              ),
+                              // borderRadius:
+                              // BorderRadius.all(Radius.circular(10))
+                            ),
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -91,18 +93,29 @@ class _ConsultationSummaryState extends State<ConsultationSummary> {
                                     Text(
                                         "${snapshot.data![index].fields.title}",
                                         style: const TextStyle(
-                                          fontSize: 18.0,
+                                          fontSize: 16.0,
                                           fontWeight: FontWeight.bold,
                                         )),
                                     Text("${snapshot.data![index].fields.name}",
                                         style: const TextStyle(
-                                          fontSize: 18.0,
+                                          fontSize: 16.0,
                                         )),
-                                    Text(
-                                        "${snapshot.data![index].fields.description}",
-                                        style: const TextStyle(
-                                          fontSize: 18.0,
-                                        )),
+                                    if (snapshot.data![index].fields.description
+                                            .length >
+                                        20)
+                                      Text(
+                                          "${snapshot.data![index].fields.description.substring(0, 20)}...",
+                                          style: const TextStyle(
+                                            fontSize: 16.0,
+                                          )),
+                                    if (snapshot.data![index].fields.description
+                                            .length <=
+                                        20)
+                                      Text(
+                                          "${snapshot.data![index].fields.description}",
+                                          style: const TextStyle(
+                                            fontSize: 16.0,
+                                          )),
                                   ],
                                 ),
                                 Column(
@@ -112,7 +125,7 @@ class _ConsultationSummaryState extends State<ConsultationSummary> {
                                         DateFormat.yMMMMd().format(
                                             snapshot.data![index].fields.date),
                                         style: const TextStyle(
-                                          fontSize: 18.0,
+                                          fontSize: 16.0,
                                         )),
                                     Container(
                                       margin: EdgeInsets.only(top: 10),
