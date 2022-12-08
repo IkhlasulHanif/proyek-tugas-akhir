@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
+import 'package:proyek_tugas_akhir/konsultasi-user/page/konsultasi_detail.dart';
+import 'package:proyek_tugas_akhir/konsultasi-user/page/konsultasi_summary.dart';
+import 'package:proyek_tugas_akhir/main.dart';
 
 var data = <Map>[];
 
@@ -50,6 +53,10 @@ class _MyFormPageState extends State<MyFormPage> {
           leading: IconButton(
             onPressed: () {
               Navigator.pop(context);
+              //  Navigator.push(
+              //   context,
+              //   MaterialPageRoute(builder: (context) => const KonsultasiSummary()),
+              // );
             },
             icon: Icon(Icons.arrow_back),
             //replace with our own icon data.
@@ -66,7 +73,7 @@ class _MyFormPageState extends State<MyFormPage> {
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
                     decoration: InputDecoration(
-                      icon: Icon(Icons.title_rounded),
+                      icon: Icon(Icons.supervisor_account),
                       labelText: "Name",
                       // Menambahkan icon agar lebih intuitif
                       // Menambahkan circular border agar lebih rapi
@@ -134,7 +141,7 @@ class _MyFormPageState extends State<MyFormPage> {
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
                     decoration: InputDecoration(
-                      icon: Icon(Icons.subject),
+                      icon: Icon(Icons.chat),
                       labelText: "Description",
                       // Menambahkan icon agar lebih intuitif
                       // Menambahkan circular border agar lebih rapi
@@ -142,10 +149,6 @@ class _MyFormPageState extends State<MyFormPage> {
                         borderRadius: BorderRadius.circular(5.0),
                       ),
                     ),
-                    keyboardType: TextInputType.number,
-                    inputFormatters: <TextInputFormatter>[
-                      FilteringTextInputFormatter.digitsOnly
-                    ],
 
                     // Menambahkan behavior saat nama diketik
                     onChanged: (String? value) {
@@ -161,10 +164,8 @@ class _MyFormPageState extends State<MyFormPage> {
                     },
                     // Validator sebagai validasi form
                     validator: (String? value) {
-                      if (value == null ||
-                          value.isEmpty ||
-                          value.startsWith('0')) {
-                        return 'Description can\'t be empty!';
+                      if (value == null || value.isEmpty) {
+                        return 'Title can\'t be empty!';
                       }
                       return null;
                     },
@@ -180,7 +181,7 @@ class _MyFormPageState extends State<MyFormPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const ListTile(
-                        leading: Icon(Icons.school),
+                        leading: Icon(Icons.email),
                         title: Text(
                             "Do you need consultation in interactive mode?"),
                       ),
@@ -251,6 +252,7 @@ class _MyFormPageState extends State<MyFormPage> {
           ),
         ),
       ),
+      
     );
   }
 }

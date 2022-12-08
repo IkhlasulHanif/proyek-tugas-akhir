@@ -41,7 +41,8 @@ class _DetailKonsultasiState extends State<DetailKonsultasi> {
               //replace with our own icon data.
             )),
         // Menambahkan drawer menu
-        body: Container(
+        body: 
+        Container(
           padding: const EdgeInsets.all(20.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -84,6 +85,7 @@ class _DetailKonsultasiState extends State<DetailKonsultasi> {
             },
             child: const Icon(Icons.reply_rounded),
           ),
-        ));
+        )
+        );
   }
 }
