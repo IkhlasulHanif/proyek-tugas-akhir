@@ -3,7 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:proyek_tugas_akhir/konsultasi-user/fetch/fetch_data.dart';
 import 'package:proyek_tugas_akhir/konsultasi-user/page/form.dart';
 import 'package:proyek_tugas_akhir/konsultasi-user/page/konsultasi_detail.dart';
-
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'konsultasi-user/page/konsultasi_detail.dart';
 import 'konsultasi-user/fetch/fetch_data.dart';
 
@@ -66,8 +66,20 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   static final List<Widget> _widgetOptions = <Widget>[
-    const Text(
-      'Home',
+    const Card(
+      child: Padding(
+      padding: EdgeInsets.all(20.0),
+      child: Text(
+        'Speak Up Now merupakan portal informasi dan pelaporan '
+        'pelecehan seksual dalam lingkungan Universitas Indonesia.'
+        'Aplikasi ini bertujuan untuk menjadi salah satu penyedia '
+        'jalan keluar dari masalah yang dihadapi para penyintas '
+        'pelecehan seksual. Mengingat isu mengenai kejahatan gender, '
+        'termasuk tindak pelecehan seksual, masih hangat dan perlu '
+        'untuk digaungkan lebih keras lagi, Speak Up Now hadir sebagai'
+        'salah satu wadah untuk menyebarluaskan informasi tersebut.',
+        ),
+      )
     ),
     Scaffold(
       appBar: AppBar(
@@ -214,14 +226,27 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       body: Center(child: _widgetOptions.elementAt(_selectedIndex)),
 
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-                builder: (context) => const MyFormPage()));
-          },
+      floatingActionButton: SpeedDial(
         child: const Icon(Icons.add),
+        children: [
+          SpeedDialChild(
+            child: const Icon(Icons.insert_comment),
+            label: "Consultation",
+            backgroundColor: primaryColor,
+            onTap: () {
+              Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const MyFormPage()));
+            },
+          ),
+          SpeedDialChild(
+            child: const Icon(Icons.description),
+            backgroundColor: primaryColor,
+            label: "Report",
+            onTap: () {},
+          )
+        ],
       ),
 
       bottomNavigationBar: BottomNavigationBar(

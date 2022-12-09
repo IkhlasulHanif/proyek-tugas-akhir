@@ -4,14 +4,14 @@ import 'package:intl/intl.dart';
 import 'package:proyek_tugas_akhir/konsultasi-user/page/konsultasi_detail.dart';
 import 'package:proyek_tugas_akhir/konsultasi-user/fetch/fetch_data.dart';
 
-class ConsultationSummary extends StatefulWidget {
-  const ConsultationSummary({super.key});
+class KonsultasiSummary extends StatefulWidget {
+  const KonsultasiSummary({super.key});
 
   @override
-  State<ConsultationSummary> createState() => _ConsultationSummaryState();
+  State<KonsultasiSummary> createState() => _KonsultasiSummaryState();
 }
 
-class _ConsultationSummaryState extends State<ConsultationSummary> {
+class _KonsultasiSummaryState extends State<KonsultasiSummary> {
   late Future<List<Konsultasi>> futureData;
 
   @override
@@ -29,8 +29,6 @@ class _ConsultationSummaryState extends State<ConsultationSummary> {
         title: const Text('Consultation Summary'),
         backgroundColor: primaryColor,
       ),
-      // Menambahkan drawer menu
-      // drawer: DrawerClass(parentScreen: ScreenName.MyWatchList),
       body: FutureBuilder(
           future: futureData,
           builder: (context, AsyncSnapshot snapshot) {
