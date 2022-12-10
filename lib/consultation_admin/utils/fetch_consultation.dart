@@ -5,20 +5,14 @@ import 'package:proyek_tugas_akhir/consultation_admin/model/reply_model.dart';
 
 Future<dynamic> addReply(Reply reply) async {
   var url = Uri.parse(
-      'https://web-production-c284.up.railway.app/curhat-admin/add-reply/${reply.pk}');
+      'https://web-production-c284.up.railway.app/curhat-admin/add-reply-flutter');
   var response = await http.post(url,
       headers: {
         "Access-Control_Allow_Origin": "*",
         "Content-Type": "application/json; charset=utf-8",
       },
-      body: jsonEncode(
-          <dynamic, dynamic>{'pk': reply.pk, 'fields': reply.fields}));
-  if (response.statusCode == 200) {
-    print('berhasil post');
-    return Reply.fromJson(jsonDecode(response.body));
-  } else {
-    throw Exception('response ${response.statusCode} pk ${reply.pk}');
-  }
+      body: jsonEncode(reply));
+  return jsonDecode(response.body)["success"];
 }
 
 Future<List<Consultation>> fetchConsultation() async {
@@ -41,4 +35,26 @@ Future<List<Consultation>> fetchConsultation() async {
   }
 
   return listConsultation;
+}
+
+Future<List<Reply>> fetchReply(int id) async {
+  var url = Uri.parse(
+      'https://web-production-c284.up.railway.app/curhat-admin/reply-json/$id');
+  var response = await http.get(
+    url,
+    headers: {
+      "Content-Type": "application/json",
+    },
+  );
+
+  var data = jsonDecode(utf8.decode(response.bodyBytes));
+  // int i = 0;
+  List<Reply> listReply = [];
+  for (var d in data) {
+    if (d != null) {
+      listReply.add(Reply.fromJson(d));
+    }
+    // print(i++);
+  }
+  return listReply;
 }

@@ -2,13 +2,13 @@
 //
 //     final reply = replyFromJson(jsonString);
 
-// import 'dart:convert';
+import 'dart:convert';
 
-// List<Reply> replyFromJson(String str) =>
-//     List<Reply>.from(json.decode(str).map((x) => Reply.fromJson(x)));
+List<Reply> replyFromJson(String str) =>
+    List<Reply>.from(json.decode(str).map((x) => Reply.fromJson(x)));
 
-// String replyToJson(List<Reply> data) =>
-//     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+String replyToJson(List<Reply> data) =>
+    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class Reply {
   Reply({
