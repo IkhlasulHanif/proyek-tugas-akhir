@@ -58,3 +58,15 @@ Future<List<Reply>> fetchReply(int id) async {
   }
   return listReply;
 }
+
+Future<http.Response> deleteConsultation(String id) async {
+  final http.Response response = await http.delete(
+    Uri.parse(
+        'https://web-production-c284.up.railway.app/curhat-admin/delete-json-flutter/$id'),
+    headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+    },
+  );
+
+  return response;
+}

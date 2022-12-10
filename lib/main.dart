@@ -171,25 +171,33 @@ class _MyHomePageState extends State<MyHomePage> {
                                         style: const TextStyle(
                                           fontSize: 16.0,
                                         )),
-                                    Container(
-                                      margin: EdgeInsets.only(top: 10),
-                                      padding: const EdgeInsets.only(
-                                          left: 20,
-                                          right: 20,
-                                          top: 5,
-                                          bottom: 5),
-                                      decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        border: Border.all(
-                                            width: 2.0, color: Colors.red),
-                                        borderRadius: BorderRadius.all(
-                                          Radius.circular(7),
+                                    GestureDetector(
+                                      onTap: () {
+                                        snapshot.data![index] =
+                                            deleteConsultation(snapshot
+                                                .data![index].pk
+                                                .toString());
+                                      },
+                                      child: Container(
+                                        margin: EdgeInsets.only(top: 10),
+                                        padding: const EdgeInsets.only(
+                                            left: 20,
+                                            right: 20,
+                                            top: 5,
+                                            bottom: 5),
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          border: Border.all(
+                                              width: 2.0, color: Colors.red),
+                                          borderRadius: BorderRadius.all(
+                                            Radius.circular(7),
+                                          ),
                                         ),
-                                      ),
-                                      child: Text(
-                                        'Delete',
-                                        style: TextStyle(
-                                          color: Colors.red,
+                                        child: Text(
+                                          'Delete',
+                                          style: TextStyle(
+                                            color: Colors.red,
+                                          ),
                                         ),
                                       ),
                                     )
