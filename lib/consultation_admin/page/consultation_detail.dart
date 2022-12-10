@@ -11,6 +11,7 @@ class ConsultationDetail extends StatefulWidget {
     required this.date,
     required this.name,
     required this.description,
+    required this.pk,
   });
 
   final String title;
@@ -18,6 +19,7 @@ class ConsultationDetail extends StatefulWidget {
   final DateTime date;
   final String name;
   final String description;
+  final int pk;
 
   @override
   State<ConsultationDetail> createState() => _ConsultationDetailState();
@@ -47,7 +49,7 @@ class _ConsultationDetailState extends State<ConsultationDetail> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                widget.title,
+                widget.title + widget.pk.toString(),
                 style: const TextStyle(
                   fontSize: 16.0,
                   fontWeight: FontWeight.w600,
@@ -79,7 +81,7 @@ class _ConsultationDetailState extends State<ConsultationDetail> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => const ConsultationReplyForm()),
+                    builder: (context) => ConsultationReplyForm(pk: widget.pk)),
               );
             },
             child: const Icon(Icons.reply_rounded),

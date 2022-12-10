@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
-
-var data = <Map>[];
+import 'package:proyek_tugas_akhir/consultation_admin/utils/fetch_consultation.dart';
+import 'package:proyek_tugas_akhir/consultation_admin/model/reply_model.dart';
 
 class ConsultationReplyForm extends StatefulWidget {
-  const ConsultationReplyForm({super.key});
+  const ConsultationReplyForm({
+    super.key,
+    required this.pk,
+  });
+
+  final int pk;
 
   @override
   State<ConsultationReplyForm> createState() => _ConsultationReplyFormState();
@@ -13,6 +18,7 @@ class ConsultationReplyForm extends StatefulWidget {
 
 class _ConsultationReplyFormState extends State<ConsultationReplyForm> {
   final _formKey = GlobalKey<FormState>();
+  late int pk;
   String _title = "";
   String _description = "";
 
@@ -22,7 +28,7 @@ class _ConsultationReplyFormState extends State<ConsultationReplyForm> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: Text('Reply Consultation'),
+          title: Text('Reply Consultation' + "${widget.pk}"),
           backgroundColor: primaryColor,
           // automaticallyImplyLeading: false,
           // leadingWidth: 100,
@@ -97,10 +103,6 @@ class _ConsultationReplyFormState extends State<ConsultationReplyForm> {
                         borderRadius: BorderRadius.circular(5.0),
                       ),
                     ),
-                    keyboardType: TextInputType.number,
-                    inputFormatters: <TextInputFormatter>[
-                      FilteringTextInputFormatter.digitsOnly
-                    ],
 
                     // Menambahkan behavior saat nama diketik
                     onChanged: (String? value) {
@@ -116,9 +118,7 @@ class _ConsultationReplyFormState extends State<ConsultationReplyForm> {
                     },
                     // Validator sebagai validasi form
                     validator: (String? value) {
-                      if (value == null ||
-                          value.isEmpty ||
-                          value.startsWith('0')) {
+                      if (value == null || value.isEmpty) {
                         return 'Description can\'t be empty!';
                       }
                       return null;
@@ -142,17 +142,19 @@ class _ConsultationReplyFormState extends State<ConsultationReplyForm> {
                             EdgeInsets.all(16)),
                       ),
                       onPressed: () {
-                        if (_formKey.currentState!.validate()) {
-                          var map = {};
-                          map['judul'] = _title;
-                          map['nominal'] = _description;
-                          data.add(map);
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                              content: Text('Data berhasil disimpan!'),
-                              backgroundColor: Colors.green,
-                            ),
-                          );
+                        print('asfasdf');
+                        _formKey.currentState!.validate();
+                        if (_formKey.currentState?.validate() ?? false) {
+                          Reply reply = Reply(
+                              pk: widget.pk,
+                              fields: Fields(
+                                  curhatUser: null,
+                                  title: _title,
+                                  description: _description,
+                                  adminName: '',
+                                  date: DateTime.now()));
+                          addReply(reply);
+                          Navigator.pop(context);
                         }
                       },
                     ),

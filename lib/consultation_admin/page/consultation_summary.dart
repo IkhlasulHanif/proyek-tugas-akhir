@@ -56,6 +56,7 @@ class _ConsultationSummaryState extends State<ConsultationSummary> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => ConsultationDetail(
+                                          pk: snapshot.data![index].pk,
                                           title: snapshot
                                               .data![index].fields.title,
                                           user:
@@ -91,7 +92,8 @@ class _ConsultationSummaryState extends State<ConsultationSummary> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                        "${snapshot.data![index].fields.title}",
+                                        "${snapshot.data![index].fields.title}" +
+                                            "${snapshot.data![index].pk}",
                                         style: const TextStyle(
                                           fontSize: 16.0,
                                           fontWeight: FontWeight.bold,

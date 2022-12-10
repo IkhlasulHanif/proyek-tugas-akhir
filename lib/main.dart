@@ -108,6 +108,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                               snapshot.data![index].fields.name,
                                           description: snapshot
                                               .data![index].fields.description,
+                                          pk: snapshot.data![index].pk,
                                         )));
                           },
                           child: Container(
@@ -133,7 +134,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                        "${snapshot.data![index].fields.title}",
+                                        "${snapshot.data![index].fields.title}" +
+                                            "${snapshot.data![index].pk}",
                                         style: const TextStyle(
                                           fontSize: 16.0,
                                           fontWeight: FontWeight.bold,
