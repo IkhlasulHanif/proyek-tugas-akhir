@@ -41,15 +41,41 @@ Beberapa modul yang akan kami implementasikan antara lain:
 
 2. User page
    -  Fitur konsultasi <br>
-      Pada fitur ini pengguna dapat menulis konsultasi terkait kejadian pelecehan seksual yang pernah dialaminya.
+      Pada fitur ini pengguna dapat menulis konsultasi terkait kejadian pelecehan seksual yang pernah dialaminya. Hal yang perlu diimplementasikan:
+      - Get data konsultasi dari Web
+      - Page form konsultasi
+      - Post data dari form ke Web
+      - Page untuk menampilkan data yang difilter terhadap user.
+      - Delete konsultasi
+      - Page untuk melihat detail konsultasi
+      
    -  Fitur laporan <br>
       Pada fitur ini pengguna dapat melaporkan kejadian pelecehan seksual yang dialami orang lain atau pengguna itu sendiri.
+      - Get data laporan dari Web
+      - Page form laporan
+      - Post data dari form ke Web
+      - Page untuk menampilkan data yang difilter terhadap user.
+      - Delete laporan
+      - Page untuk melihat detail laporan
 
 3. Admin page
    - Fitur jawab konsultasi <br>
-     Pada fitur ini admin dapat menjawab konsultasi dari pengguna.
+     Pada fitur ini admin dapat menjawab konsultasi dari pengguna. Hal yang perlu diimplementasikan:
+     - Get data konsultasi dari web
+     - Page untuk menampilkan data konsultasi dari seluruh user
+     - Delete konsultasi
+     - Page untuk melihat detail konsultasi
+     - Page form reply konsultasi
+     - Post data reply dari form ke web
+     
    - Fitur jawab laporan <br>
-     Pada fitur ini admin dapat mengverfikasi atau memberi respon terhadap laporan yang diberikan pengguna.
+     Pada fitur ini admin dapat mengverfikasi atau memberi respon terhadap laporan yang diberikan pengguna. Hal yang perlu diimplementasikan:
+     - Get data laporan dari web
+     - Page untuk menampilkan data laporan dari seluruh user
+     - Delete laporan
+     - Page untuk melihat detail laporan
+     - Page form reply laporan
+     - Post data reply dari form ke web
      
 Pembagian tugas:
 1. Home page (fitur login dan sign up) oleh Muhammad Satria Ramadhan
