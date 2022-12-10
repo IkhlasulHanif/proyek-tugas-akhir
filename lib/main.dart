@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:proyek_tugas_akhir/consultation_admin/utils/fetch_consultation.dart';
-
-import 'consultation_admin/page/consultation_detail.dart';
+import 'package:proyek_tugas_akhir/konsultasi-user/fetch/fetch_data.dart';
+import 'package:proyek_tugas_akhir/konsultasi-user/page/form.dart';
+import 'package:proyek_tugas_akhir/konsultasi-user/page/konsultasi_detail.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+import 'konsultasi-user/page/konsultasi_detail.dart';
+import 'konsultasi-user/fetch/fetch_data.dart';
 
 void main() {
   runApp(const MyApp());
@@ -63,8 +66,20 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   static final List<Widget> _widgetOptions = <Widget>[
-    const Text(
-      'Home',
+    const Card(
+      child: Padding(
+      padding: EdgeInsets.all(20.0),
+      child: Text(
+        'Speak Up Now merupakan portal informasi dan pelaporan '
+        'pelecehan seksual dalam lingkungan Universitas Indonesia.'
+        'Aplikasi ini bertujuan untuk menjadi salah satu penyedia '
+        'jalan keluar dari masalah yang dihadapi para penyintas '
+        'pelecehan seksual. Mengingat isu mengenai kejahatan gender, '
+        'termasuk tindak pelecehan seksual, masih hangat dan perlu '
+        'untuk digaungkan lebih keras lagi, Speak Up Now hadir sebagai'
+        'salah satu wadah untuk menyebarluaskan informasi tersebut.',
+        ),
+      )
     ),
     Scaffold(
       appBar: AppBar(
@@ -83,7 +98,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 return Column(
                   children: const [
                     Text(
-                      "No consultation from user!",
+                      "You haven't fill any consultation form",
                       style: TextStyle(color: Color(0xff59A5D8), fontSize: 20),
                     ),
                     SizedBox(height: 8),
@@ -97,7 +112,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => ConsultationDetail(
+                                    builder: (context) => DetailKonsultasi(
                                           title: snapshot
                                               .data![index].fields.title,
                                           user:
@@ -210,6 +225,30 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(child: _widgetOptions.elementAt(_selectedIndex)),
+
+      floatingActionButton: SpeedDial(
+        child: const Icon(Icons.add),
+        children: [
+          SpeedDialChild(
+            child: const Icon(Icons.insert_comment),
+            label: "Consultation",
+            backgroundColor: primaryColor,
+            onTap: () {
+              Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const MyFormPage()));
+            },
+          ),
+          SpeedDialChild(
+            child: const Icon(Icons.description),
+            backgroundColor: primaryColor,
+            label: "Report",
+            onTap: () {},
+          )
+        ],
+      ),
+
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
