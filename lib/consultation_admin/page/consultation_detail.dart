@@ -77,6 +77,11 @@ class _ConsultationDetailState extends State<ConsultationDetail> {
                 ],
               ),
             ),
+            Container(
+              color: primaryColor,
+              width: double.infinity,
+              height: 1,
+            ),
             FutureBuilder(
                 future: fetchReply(widget.pk),
                 builder: (context, AsyncSnapshot snapshot) {
