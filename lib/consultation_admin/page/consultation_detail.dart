@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import 'package:proyek_tugas_akhir/konsultasi-user/page/form.dart';
+import 'consultation_reply_form.dart';
 
-class DetailKonsultasi extends StatefulWidget {
-  const DetailKonsultasi({
+class ConsultationDetail extends StatefulWidget {
+  const ConsultationDetail({
     super.key,
     required this.title,
     required this.user,
@@ -20,10 +20,10 @@ class DetailKonsultasi extends StatefulWidget {
   final String description;
 
   @override
-  State<DetailKonsultasi> createState() => _DetailKonsultasiState();
+  State<ConsultationDetail> createState() => _ConsultationDetailState();
 }
 
-class _DetailKonsultasiState extends State<DetailKonsultasi> {
+class _ConsultationDetailState extends State<ConsultationDetail> {
   static const primaryColor = Color(0xFF2D55D0);
 
   @override
@@ -41,8 +41,7 @@ class _DetailKonsultasiState extends State<DetailKonsultasi> {
               //replace with our own icon data.
             )),
         // Menambahkan drawer menu
-        body: 
-        Container(
+        body: Container(
           padding: const EdgeInsets.all(20.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -80,12 +79,11 @@ class _DetailKonsultasiState extends State<DetailKonsultasi> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => const MyFormPage()),
+                    builder: (context) => const ConsultationReplyForm()),
               );
             },
             child: const Icon(Icons.reply_rounded),
           ),
-        )
-        );
+        ));
   }
 }
