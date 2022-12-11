@@ -83,7 +83,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 return Column(
                   children: const [
                     Text(
-                      "No consultation from user!",
+                      "Belum ada konsultasi dari user!",
                       style: TextStyle(color: Color(0xff59A5D8), fontSize: 20),
                     ),
                     SizedBox(height: 8),
@@ -134,8 +134,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                        "${snapshot.data![index].fields.title}" +
-                                            "${snapshot.data![index].pk}",
+                                        "${snapshot.data![index].fields.title}",
                                         style: const TextStyle(
                                           fontSize: 16.0,
                                           fontWeight: FontWeight.bold,

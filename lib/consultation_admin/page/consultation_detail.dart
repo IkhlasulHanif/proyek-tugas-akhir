@@ -53,7 +53,7 @@ class _ConsultationDetailState extends State<ConsultationDetail> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    widget.title + widget.pk.toString(),
+                    widget.title,
                     style: const TextStyle(
                       fontSize: 16.0,
                       fontWeight: FontWeight.w600,
@@ -90,13 +90,13 @@ class _ConsultationDetailState extends State<ConsultationDetail> {
                     return const Center(child: CircularProgressIndicator());
                   } else {
                     if (snapshot.data.length == 0) {
-                      print('0');
+                      // print('0');
                       return Padding(
                         padding: const EdgeInsets.all(20.0),
                         child: Column(
                           children: const [
                             Text(
-                              "No reply from admin!",
+                              "Belum ada reply dari Admin!",
                               style: TextStyle(
                                   fontWeight: FontWeight.w600, fontSize: 15),
                             ),

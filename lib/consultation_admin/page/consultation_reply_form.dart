@@ -28,7 +28,7 @@ class _ConsultationReplyFormState extends State<ConsultationReplyForm> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: Text('Reply Consultation' + "${widget.pk}"),
+          title: Text('Reply Consultation'),
           backgroundColor: primaryColor,
           // automaticallyImplyLeading: false,
           // leadingWidth: 100,
@@ -142,7 +142,7 @@ class _ConsultationReplyFormState extends State<ConsultationReplyForm> {
                             EdgeInsets.all(16)),
                       ),
                       onPressed: () {
-                        print('asfasdf');
+                        // print('asfasdf');
                         _formKey.currentState!.validate();
                         if (_formKey.currentState?.validate() ?? false) {
                           Reply reply = Reply(
