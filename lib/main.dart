@@ -52,7 +52,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
   int _selectedIndex = 0;
   static const primaryColor = Color(0xFF2D55D0);
 
@@ -71,8 +70,6 @@ class _MyHomePageState extends State<MyHomePage> {
         title: const Text('Consultation Summary'),
         backgroundColor: primaryColor,
       ),
-      // Menambahkan drawer menu
-      // drawer: DrawerClass(parentScreen: ScreenName.MyWatchList),
       body: FutureBuilder(
           future: fetchConsultation(),
           builder: (context, AsyncSnapshot snapshot) {
@@ -115,7 +112,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             margin: const EdgeInsets.symmetric(
                                 horizontal: 27, vertical: 9),
                             padding: const EdgeInsets.all(20.0),
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                               color: Colors.white,
                               border: Border(
                                 bottom: BorderSide(
@@ -188,11 +185,11 @@ class _MyHomePageState extends State<MyHomePage> {
                                           color: Colors.white,
                                           border: Border.all(
                                               width: 2.0, color: Colors.red),
-                                          borderRadius: BorderRadius.all(
+                                          borderRadius: const BorderRadius.all(
                                             Radius.circular(7),
                                           ),
                                         ),
-                                        child: Text(
+                                        child: const Text(
                                           'Delete',
                                           style: TextStyle(
                                             color: Colors.red,

@@ -1,8 +1,6 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:intl/intl.dart';
-import 'package:proyek_tugas_akhir/consultation_admin/utils/fetch_consultation.dart';
-import 'package:proyek_tugas_akhir/consultation_admin/model/reply_model.dart';
+import 'package:http/http.dart' as http;
 
 class ConsultationReplyForm extends StatefulWidget {
   const ConsultationReplyForm({
@@ -18,9 +16,21 @@ class ConsultationReplyForm extends StatefulWidget {
 
 class _ConsultationReplyFormState extends State<ConsultationReplyForm> {
   final _formKey = GlobalKey<FormState>();
-  late int pk;
+
   String _title = "";
   String _description = "";
+
+  Future<void> submit(BuildContext context) async {
+    final response = await http.post(
+        Uri.parse(
+            'https://web-production-c284.up.railway.app/curhat-admin/add-reply-flutter'),
+        headers: <String, String>{'Content-Type': 'application/json'},
+        body: jsonEncode(<String, dynamic>{
+          'title': _title,
+          'description': _description,
+          'pk': widget.pk,
+        }));
+  }
 
   static const primaryColor = Color(0xFF2D55D0);
 
@@ -28,26 +38,14 @@ class _ConsultationReplyFormState extends State<ConsultationReplyForm> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: Text('Reply Consultation'),
+          title: const Text('Reply Consultation'),
           backgroundColor: primaryColor,
-          // automaticallyImplyLeading: false,
-          // leadingWidth: 100,
-          // leading: ElevatedButton.icon(
-          //   onPressed: () => Navigator.of(context).pop(),
-          //   icon: const Icon(Icons.arrow_back),
-          //   label: Text(''),
-          //   style: ElevatedButton.styleFrom(
-          //     elevation: 0,
-          //     backgroundColor: Colors.transparent,
-          //   ),
-          // ),
           leadingWidth: 64,
           leading: IconButton(
             onPressed: () {
               Navigator.pop(context);
             },
             icon: Icon(Icons.arrow_back),
-            //replace with our own icon data.
           )),
       body: Form(
         key: _formKey,
@@ -57,31 +55,25 @@ class _ConsultationReplyFormState extends State<ConsultationReplyForm> {
             child: Column(
               children: [
                 Padding(
-                  // Menggunakan padding sebesar 8 pixels
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
                     decoration: InputDecoration(
-                      icon: Icon(Icons.title_rounded),
+                      icon: const Icon(Icons.title_rounded),
                       labelText: "Title",
-                      // Menambahkan icon agar lebih intuitif
-                      // Menambahkan circular border agar lebih rapi
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(5.0),
                       ),
                     ),
-                    // Menambahkan behavior saat nama diketik
                     onChanged: (String? value) {
                       setState(() {
                         _title = value!;
                       });
                     },
-                    // Menambahkan behavior saat data disimpan
                     onSaved: (String? value) {
                       setState(() {
                         _title = value!;
                       });
                     },
-                    // Validator sebagai validasi form
                     validator: (String? value) {
                       if (value == null || value.isEmpty) {
                         return 'Title can\'t be empty!';
@@ -91,32 +83,25 @@ class _ConsultationReplyFormState extends State<ConsultationReplyForm> {
                   ),
                 ),
                 Padding(
-                  // Menggunakan padding sebesar 8 pixels
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
                     decoration: InputDecoration(
-                      icon: Icon(Icons.subject),
+                      icon: const Icon(Icons.subject),
                       labelText: "Description",
-                      // Menambahkan icon agar lebih intuitif
-                      // Menambahkan circular border agar lebih rapi
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(5.0),
                       ),
                     ),
-
-                    // Menambahkan behavior saat nama diketik
                     onChanged: (String? value) {
                       setState(() {
                         _description = value!;
                       });
                     },
-                    // Menambahkan behavior saat data disimpan
                     onSaved: (String? value) {
                       setState(() {
                         _description = value!;
                       });
                     },
-                    // Validator sebagai validasi form
                     validator: (String? value) {
                       if (value == null || value.isEmpty) {
                         return 'Description can\'t be empty!';
@@ -126,37 +111,27 @@ class _ConsultationReplyFormState extends State<ConsultationReplyForm> {
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.only(top: 25),
+                  margin: const EdgeInsets.only(top: 25),
                   child: SizedBox(
                     height: 48,
                     width: 120,
                     child: TextButton(
-                      child: const Text(
-                        "Send Reply",
-                        style: TextStyle(color: Colors.white),
-                      ),
                       style: ButtonStyle(
                         backgroundColor:
                             MaterialStateProperty.all(primaryColor),
                         padding: MaterialStateProperty.all<EdgeInsets>(
-                            EdgeInsets.all(16)),
+                            const EdgeInsets.all(16)),
                       ),
                       onPressed: () {
-                        // print('asfasdf');
-                        _formKey.currentState!.validate();
-                        if (_formKey.currentState?.validate() ?? false) {
-                          Reply reply = Reply(
-                              pk: widget.pk,
-                              fields: Fields(
-                                  curhatUser: null,
-                                  title: _title,
-                                  description: _description,
-                                  adminName: '',
-                                  date: DateTime.now()));
-                          addReply(reply);
+                        if (_formKey.currentState!.validate()) {
+                          submit(context);
                           Navigator.pop(context);
                         }
                       },
+                      child: const Text(
+                        "Send Reply",
+                        style: TextStyle(color: Colors.white),
+                      ),
                     ),
                   ),
                 ),

@@ -40,10 +40,8 @@ class _ConsultationDetailState extends State<ConsultationDetail> {
               onPressed: () {
                 Navigator.pop(context);
               },
-              icon: Icon(Icons.arrow_back),
-              //replace with our own icon data.
+              icon: const Icon(Icons.arrow_back),
             )),
-        // Menambahkan drawer menu
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -60,14 +58,14 @@ class _ConsultationDetailState extends State<ConsultationDetail> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(bottom: 20),
+                    padding: const EdgeInsets.only(bottom: 20),
                     child: Text(
                       DateFormat.yMMMMd().format(widget.date),
                     ),
                   ),
                   Text(widget.name),
                   Padding(
-                    padding: EdgeInsets.only(top: 5),
+                    padding: const EdgeInsets.only(top: 5),
                     child: Row(children: [
                       Flexible(
                         child: Text(widget.description),
@@ -113,7 +111,7 @@ class _ConsultationDetailState extends State<ConsultationDetail> {
                           children: [
                             Text(
                               "Reply dari Admin ${snapshot.data![0].fields.adminName}",
-                              style: TextStyle(
+                              style: const TextStyle(
                                   fontWeight: FontWeight.w600, fontSize: 15),
                             ),
                             Container(
@@ -121,7 +119,7 @@ class _ConsultationDetailState extends State<ConsultationDetail> {
                             ),
                             Text(
                               "${snapshot.data![0].fields.title}",
-                              style: TextStyle(
+                              style: const TextStyle(
                                   fontWeight: FontWeight.w600, fontSize: 15),
                             ),
                             Text("${snapshot.data![0].fields.description}")
@@ -142,7 +140,7 @@ class _ConsultationDetailState extends State<ConsultationDetail> {
                 context,
                 MaterialPageRoute(
                     builder: (context) => ConsultationReplyForm(pk: widget.pk)),
-              );
+              ).then((_) => setState(() {}));
             },
             child: const Icon(Icons.reply_rounded),
           ),
