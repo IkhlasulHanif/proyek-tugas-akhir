@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:proyek_tugas_akhir/konsultasi-user/page/konsultasi_detail.dart';
 import 'package:proyek_tugas_akhir/konsultasi-user/model/konsultasi_model.dart';
-import 'package:proyek_tugas_akhir/report_user/utils/fetch_report.dart';
+import 'package:proyek_tugas_akhir/konsultasi-user/utils/fetch_data.dart';
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
-
+import 'package:proyek_tugas_akhir/user/page/drawer.dart';
 import 'form.dart';
 
 class KonsultasiSummary extends StatefulWidget {
@@ -24,13 +24,14 @@ class _KonsultasiSummaryState extends State<KonsultasiSummary> {
     final request = context.watch<CookieRequest>();
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Konsultasi Summary'),
+          title: const Text('Consultation Summary'),
           backgroundColor: primaryColor,
         ),
+        drawer: DrawerWidget(),
         // Menambahkan drawer menu
         // drawer: DrawerClass(parentScreen: ScreenName.MyWatchList),
         body: FutureBuilder(
-            future: fetchReport(request),
+            future: fetchKonsultasi(request),
             builder: (context, AsyncSnapshot snapshot) {
               if (snapshot.data == null) {
                 return const Center(child: CircularProgressIndicator());
@@ -150,7 +151,7 @@ class _KonsultasiSummaryState extends State<KonsultasiSummary> {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => KonsultasiForm()),
+                MaterialPageRoute(builder: (context) => const KonsultasiForm()),
               ).then((_) => setState(() {}));
             },
             child: const Icon(Icons.reply_rounded),
