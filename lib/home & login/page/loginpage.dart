@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:proyek_tugas_akhir/main.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:proyek_tugas_akhir/report_user/page/report_summary.dart';
+import 'package:proyek_tugas_akhir/user/page/user_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -93,7 +95,9 @@ class _LoginPageState extends State<LoginPage> {
                           Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                  builder: ((context) => const MyApp())));
+                                  builder: ((context) => const UserPage(
+                                        title: '',
+                                      ))));
                         }
                       } catch (_) {
                         print("error");
