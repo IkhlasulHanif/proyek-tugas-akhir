@@ -40,7 +40,7 @@ class _ReportFormState extends State<ReportForm> {
 
   // Future<void> buatReport(BuildContext context, report) async {
   //   final response = await http.post(
-  //       Uri.parse('http://127.0.0.1:8000/laporan/add-laporan-flutter'),
+  //       Uri.parse('https://web-production-c284.up.railway.app/laporan/add-laporan-flutter'),
   //       headers: <String, String>{'Content-Type': 'application/json'},
   //       body: jsonEncode(<String, dynamic>{
   //         'name': _name,
@@ -64,8 +64,8 @@ class _ReportFormState extends State<ReportForm> {
     print(report.victimDescription);
     print(report.crimePlace);
     print(report.chronology);
-    final response =
-        await request.post('http://127.0.0.1:8000/laporan/add-laporan/', {
+    final response = await request.post(
+        'https://web-production-c284.up.railway.app/laporan/add-laporan/', {
       'name': report.name,
       'phone_num': report.phoneNum,
       'email': report.email,

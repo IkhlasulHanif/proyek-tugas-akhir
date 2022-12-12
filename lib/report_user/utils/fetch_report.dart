@@ -3,7 +3,8 @@ import 'package:http/http.dart' as http;
 import 'package:proyek_tugas_akhir/report_user/model/report_model.dart';
 
 Future<List<Report>> fetchReport(request) async {
-  final response = await request.get('http://127.0.0.1:8000/laporan/json/');
+  final response = await request
+      .get('https://web-production-c284.up.railway.app/laporan/json/');
   print(response);
 
   List<Report> listReport = [];
