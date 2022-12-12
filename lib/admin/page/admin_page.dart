@@ -68,7 +68,7 @@ class _AdminPageState extends State<AdminPage> {
           width: 100,
           height: 40,
           child: Image.asset(
-            'assets/LOGO.png',
+            'assets/logo_tes.png',
           ),
         ),
         backgroundColor: primaryColor,
