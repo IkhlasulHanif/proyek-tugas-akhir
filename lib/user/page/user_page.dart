@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:intl/intl.dart';
+import 'package:proyek_tugas_akhir/home%20&%20login/page/loginpage.dart';
 import 'package:proyek_tugas_akhir/konsultasi-user/utils/fetch_data.dart';
 import 'package:proyek_tugas_akhir/report_user/page/report_detail.dart';
 import 'package:proyek_tugas_akhir/report_user/utils/fetch_report.dart';
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:proyek_tugas_akhir/user/page/drawer.dart';
-
+import 'package:proyek_tugas_akhir/home & login/util/user_provider.dart';
 import '../../konsultasi-user/page/form.dart';
 import '../../konsultasi-user/page/konsultasi_detail.dart';
 import '../../report_user/page/report_form.dart';
@@ -62,6 +63,7 @@ class UserPage extends StatefulWidget {
 class _UserPage extends State<UserPage> {
   int _counter = 0;
   int _selectedIndex = 0;
+
   static const primaryColor = Color(0xFF548AFF);
 
   void _onItemTapped(int index) {
@@ -73,6 +75,7 @@ class _UserPage extends State<UserPage> {
   @override
   Widget build(BuildContext context) {
     final request = context.watch<CookieRequest>();
+    final user = context.watch<UserManagement>();
     return Scaffold(
       appBar: AppBar(
         title: SizedBox(
@@ -219,6 +222,13 @@ class _UserPage extends State<UserPage> {
                         fontFamily: 'Poppins', fontWeight: FontWeight.w400),
                   ),
                 ),
+                FloatingActionButton(onPressed: () async {
+                  user.removeUser();
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: ((context) => const LoginPage())));
+                }),
               ],
             ))
           ],
