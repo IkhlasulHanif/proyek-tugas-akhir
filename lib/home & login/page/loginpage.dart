@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:proyek_tugas_akhir/admin/page/admin_page.dart';
 import 'package:proyek_tugas_akhir/home%20&%20login/model/loginpage-model.dart';
 import 'package:proyek_tugas_akhir/home%20&%20login/util/user_provider.dart';
 import 'package:proyek_tugas_akhir/main.dart';
@@ -100,12 +101,21 @@ class _LoginPageState extends State<LoginPage> {
                           user.setUser(loginuser);
                           print(loginuser.username);
                           print(loginuser.is_konsulir);
-                          Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                  builder: ((context) => const UserPage(
-                                        title: '',
-                                      ))));
+                          if (loginuser.is_konsulir) {
+                            Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: ((context) => const AdminPage(
+                                          title: '',
+                                        ))));
+                          } else {
+                            Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: ((context) => const UserPage(
+                                          title: '',
+                                        ))));
+                          }
                         }
                       } catch (_) {
                         print("error");
