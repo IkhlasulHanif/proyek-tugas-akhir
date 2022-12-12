@@ -27,8 +27,7 @@ class _MyFormPageState extends State<MyFormPage> {
   static const primaryColor = Color(0xFF548AFF);
   Future<void> submit(BuildContext context) async {
     final response = await http.post(
-        Uri.parse(
-            'https://web-production-c284.up.railway.app/curhat/add-konsultasi-flutter'),
+        Uri.parse('http://127.0.0.1:8000/curhat/add-konsultasi-flutter'),
         headers: <String, String>{'Content-Type': 'application/json'},
         body: jsonEncode(<String, dynamic>{
           'user': _user,

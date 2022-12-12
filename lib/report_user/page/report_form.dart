@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:proyek_tugas_akhir/report_user/page/report_summary.dart';
+import 'package:provider/provider.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
 
 var data = <Map>[];
 
@@ -36,29 +38,34 @@ class _ReportFormState extends State<ReportForm> {
   String _crimePlace = "";
   String _chronology = "";
 
-  Future<void> buatReport(BuildContext context, report) async {
-    final response = await http.post(
-        Uri.parse(
-            'https://web-production-c284.up.railway.app/laporan/add-laporan-flutter'),
-        headers: <String, String>{'Content-Type': 'application/json'},
-        body: jsonEncode(<String, dynamic>{
-          'name': _name,
-          'phone_num': _phoneNum,
-          'email': _email,
-          'case_name': _caseName,
-          'victim_name': _victimName,
-          'victim_description': _victimDescription,
-          'crime_place': _crimePlace,
-          'chronology': _chronology
-        }));
-    print(response);
-    print(report.name);
-    print("halo");
-  }
+  // Future<void> buatReport(BuildContext context, report) async {
+  //   final response = await http.post(
+  //       Uri.parse('http://127.0.0.1:8000/laporan/add-laporan-flutter'),
+  //       headers: <String, String>{'Content-Type': 'application/json'},
+  //       body: jsonEncode(<String, dynamic>{
+  //         'name': _name,
+  //         'phone_num': _phoneNum,
+  //         'email': _email,
+  //         'case_name': _caseName,
+  //         'victim_name': _victimName,
+  //         'victim_description': _victimDescription,
+  //         'crime_place': _crimePlace,
+  //         'chronology': _chronology
+  //       }));
+  //   print(response.body);
+  // }
 
   createReport(request, report) async {
-    final response = await request.post(
-        'https://web-production-c284.up.railway.app/laporan/add-laporan', {
+    print(report.name);
+    print(report.phoneNum);
+    print(report.email);
+    print(report.caseName);
+    print(report.victimName);
+    print(report.victimDescription);
+    print(report.crimePlace);
+    print(report.chronology);
+    final response =
+        await request.post('http://127.0.0.1:8000/laporan/add-laporan/', {
       'name': report.name,
       'phone_num': report.phoneNum,
       'email': report.email,
@@ -68,7 +75,7 @@ class _ReportFormState extends State<ReportForm> {
       'crime_place': report.crimePlace,
       'chronology': report.chronology
     });
-    print(response);
+    print("halo");
     return Navigator.pushReplacement(
       context,
       MaterialPageRoute(builder: (context) => const ReportSummary()),
@@ -79,22 +86,11 @@ class _ReportFormState extends State<ReportForm> {
 
   @override
   Widget build(BuildContext context) {
-    // final request = context.watch<CookieRequest>();
+    final request = context.watch<CookieRequest>();
     return Scaffold(
       appBar: AppBar(
           title: Text('Report'),
           backgroundColor: primaryColor,
-          // automaticallyImplyLeading: false,
-          // leadingWidth: 100,
-          // leading: ElevatedButton.icon(
-          //   onPressed: () => Navigator.of(context).pop(),
-          //   icon: const Icon(Icons.arrow_back),
-          //   label: Text(''),
-          //   style: ElevatedButton.styleFrom(
-          //     elevation: 0,
-          //     backgroundColor: Colors.transparent,
-          //   ),
-          // ),
           leadingWidth: 64,
           leading: IconButton(
             onPressed: () {
@@ -410,8 +406,8 @@ class _ReportFormState extends State<ReportForm> {
                               _victimDescription,
                               _crimePlace,
                               _chronology);
-                          // createReport(request, _report);
-                          buatReport(context, _report);
+                          createReport(request, _report);
+                          // buatReport(context, _report);
                         }
                       },
                     ),

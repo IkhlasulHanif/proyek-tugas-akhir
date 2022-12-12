@@ -127,12 +127,10 @@ class _RegisterPageState extends State<RegisterPage> {
               onPressed: () async {
                 if (_RegisterFormKey.currentState!.validate()) {
                   try {
-                    await request.login(
-                        "https://web-production-c284.up.railway.app/user-details/",
-                        {
-                          'username': username,
-                          'password': password1,
-                        });
+                    await request.login("http://127.0.0.1:8000/user-details/", {
+                      'username': username,
+                      'password': password1,
+                    });
                     if (request.loggedIn) {
                       Navigator.pushReplacement(
                           context,
