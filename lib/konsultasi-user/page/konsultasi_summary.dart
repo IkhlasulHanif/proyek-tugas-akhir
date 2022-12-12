@@ -1,85 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:proyek_tugas_akhir/konsultasi-user/model/konsultasi_model.dart';
 import 'package:intl/intl.dart';
-import 'package:pbp_django_auth/pbp_django_auth.dart';
-import 'package:provider/provider.dart';
-import 'package:proyek_tugas_akhir/konsultasi-user/fetch/fetch_data.dart';
-import 'package:proyek_tugas_akhir/konsultasi-user/page/form.dart';
 import 'package:proyek_tugas_akhir/konsultasi-user/page/konsultasi_detail.dart';
-import 'package:flutter_speed_dial/flutter_speed_dial.dart';
-import 'konsultasi-user/page/konsultasi_detail.dart';
-import 'konsultasi-user/fetch/fetch_data.dart';
-import 'home & login/page/loginpage.dart';
+import 'package:proyek_tugas_akhir/konsultasi-user/fetch/fetch_data.dart';
 
-void main() {
-  runApp(const MyApp());
+class KonsultasiSummary extends StatefulWidget {
+  const KonsultasiSummary({super.key});
+
+  @override
+  State<KonsultasiSummary> createState() => _KonsultasiSummaryState();
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-  static const ROUTE_NAME = '/home';
+class _KonsultasiSummaryState extends State<KonsultasiSummary> {
+  late Future<List<Konsultasi>> futureData;
+
   @override
-  Widget build(BuildContext context) {
-    return Provider(
-      create: (_) {
-        CookieRequest request = CookieRequest();
-        return request;
-      },
-      child: MaterialApp(
-        title: 'Flutter App',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        home: const MyHomePage(title: 'Flutter App'),
-        routes: {
-          "/login": (BuildContext context) => const LoginPage(),
-        },
-      ),
-    );
+  void initState() {
+    super.initState();
+    futureData = fetchConsultation();
   }
-}
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-  int _selectedIndex = 0;
   static const primaryColor = Color(0xFF2D55D0);
 
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
-  static final List<Widget> _widgetOptions = <Widget>[
-    const Text(
-      'Home',
-    ),
-    Scaffold(
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
       appBar: AppBar(
         title: const Text('Consultation Summary'),
         backgroundColor: primaryColor,
       ),
-      // Menambahkan drawer menu
-      // drawer: DrawerClass(parentScreen: ScreenName.MyWatchList),
       body: FutureBuilder(
-          future: fetchConsultation(),
+          future: futureData,
           builder: (context, AsyncSnapshot snapshot) {
             if (snapshot.data == null) {
               return const Center(child: CircularProgressIndicator());
@@ -88,7 +39,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 return Column(
                   children: const [
                     Text(
-                      "You haven't fill any consultation form",
+                      "No consultation from user!",
                       style: TextStyle(color: Color(0xff59A5D8), fontSize: 20),
                     ),
                     SizedBox(height: 8),
@@ -200,72 +151,13 @@ class _MyHomePageState extends State<MyHomePage> {
                                 )
                               ],
                             ),
+                            
                           ),
                         ));
+                        
               }
             }
           }),
-    ),
-    const Text(
-      'Index 2: School',
-    ),
-  ];
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(child: _widgetOptions.elementAt(_selectedIndex)),
-      floatingActionButton: SpeedDial(
-        child: const Icon(Icons.add),
-        children: [
-          SpeedDialChild(
-            child: const Icon(Icons.insert_comment),
-            label: "Consultation", // Set background biru
-            onTap: () {
-              Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: (context) => const MyFormPage()));
-            },
-          ),
-          SpeedDialChild(
-            child: const Icon(Icons.description),
-            label: "Report",
-            onTap: () {},
-          ),
-          SpeedDialChild(
-            child: const Icon(Icons.login_rounded),
-            label: "Login",
-            backgroundColor: primaryColor,
-            onTap: () {
-              Navigator.of(context).pushNamed('/login');
-            },
-          )
-        ],
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.chat),
-            label: 'Konsultasi',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.crisis_alert),
-            label: 'Lapor',
-          ),
-        ],
-        backgroundColor: Colors.white,
-        elevation: 0,
-        iconSize: 20,
-        selectedFontSize: 15,
-        selectedIconTheme: IconThemeData(color: primaryColor, size: 25),
-        selectedItemColor: primaryColor,
-        selectedLabelStyle: TextStyle(fontWeight: FontWeight.bold),
-        currentIndex: _selectedIndex, //New
-        onTap: _onItemTapped, //New
-      ),
     );
   }
 }
