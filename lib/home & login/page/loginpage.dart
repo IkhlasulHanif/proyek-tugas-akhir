@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:proyek_tugas_akhir/home%20&%20login/model/loginpage-model.dart';
+import 'package:proyek_tugas_akhir/home%20&%20login/util/user_provider.dart';
 import 'package:proyek_tugas_akhir/main.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -20,6 +24,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     final request = context.watch<CookieRequest>();
+    final user = context.watch<UserManagement>();
     return Scaffold(
         appBar: AppBar(title: const Text('Login Page')),
         body: Form(
@@ -83,13 +88,17 @@ class _LoginPageState extends State<LoginPage> {
                   onPressed: () async {
                     if (_loginFormKey.currentState!.validate()) {
                       try {
-                        await request.login(
+                        final response = await request.login(
                             "https://web-production-c284.up.railway.app/user-details/",
                             {
                               'username': username,
                               'password': password1,
                             });
                         if (request.loggedIn) {
+                          var loginuser = UserLogin.fromJson(response["data"]);
+                          user.setUser(loginuser);
+                          print(loginuser.username);
+                          print(loginuser.is_konsulir);
                           Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(

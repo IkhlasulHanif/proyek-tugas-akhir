@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
+import 'package:proyek_tugas_akhir/home%20&%20login/page/registerpage.dart';
+import 'package:proyek_tugas_akhir/home%20&%20login/util/user_provider.dart';
 import 'package:proyek_tugas_akhir/konsultasi-user/fetch/fetch_data.dart';
 import 'package:proyek_tugas_akhir/konsultasi-user/page/form.dart';
 import 'package:proyek_tugas_akhir/konsultasi-user/page/konsultasi_detail.dart';
@@ -19,11 +21,16 @@ class MyApp extends StatelessWidget {
   static const ROUTE_NAME = '/home';
   @override
   Widget build(BuildContext context) {
-    return Provider(
-      create: (_) {
-        CookieRequest request = CookieRequest();
-        return request;
-      },
+    return MultiProvider(
+      providers: [
+        Provider(
+          create: (_) {
+            CookieRequest request = CookieRequest();
+            return request;
+          },
+        ),
+        ChangeNotifierProvider(create: (_) => UserManagement())
+      ],
       child: MaterialApp(
         title: 'Flutter App',
         theme: ThemeData(
@@ -32,6 +39,7 @@ class MyApp extends StatelessWidget {
         home: const MyHomePage(title: 'Flutter App'),
         routes: {
           "/login": (BuildContext context) => const LoginPage(),
+          "/register": (BuildContext context) => const RegisterPage(),
         },
       ),
     );
@@ -239,6 +247,14 @@ class _MyHomePageState extends State<MyHomePage> {
             backgroundColor: primaryColor,
             onTap: () {
               Navigator.of(context).pushNamed('/login');
+            },
+          ),
+          SpeedDialChild(
+            child: const Icon(Icons.app_registration_rounded),
+            label: "Register",
+            backgroundColor: primaryColor,
+            onTap: () {
+              Navigator.of(context).pushNamed('/register');
             },
           )
         ],
