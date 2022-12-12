@@ -1,6 +1,7 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:intl/intl.dart';
+import 'package:http/http.dart' as http;
+import 'package:proyek_tugas_akhir/report_user/page/report_summary.dart';
 
 var data = <Map>[];
 
@@ -9,6 +10,19 @@ class ReportForm extends StatefulWidget {
 
   @override
   State<ReportForm> createState() => _ReportFormState();
+}
+
+class _Report {
+  String name = "";
+  String phoneNum = "";
+  String email = "";
+  String caseName = "";
+  String victimName = "";
+  String victimDescription = "";
+  String crimePlace = "";
+  String chronology = "";
+  _Report(this.name, this.phoneNum, this.email, this.caseName, this.victimName,
+      this.victimDescription, this.crimePlace, this.chronology);
 }
 
 class _ReportFormState extends State<ReportForm> {
@@ -22,10 +36,50 @@ class _ReportFormState extends State<ReportForm> {
   String _crimePlace = "";
   String _chronology = "";
 
+  Future<void> buatReport(BuildContext context, report) async {
+    final response = await http.post(
+        Uri.parse(
+            'https://web-production-c284.up.railway.app/laporan/add-laporan-flutter'),
+        headers: <String, String>{'Content-Type': 'application/json'},
+        body: jsonEncode(<String, dynamic>{
+          'name': _name,
+          'phone_num': _phoneNum,
+          'email': _email,
+          'case_name': _caseName,
+          'victim_name': _victimName,
+          'victim_description': _victimDescription,
+          'crime_place': _crimePlace,
+          'chronology': _chronology
+        }));
+    print(response);
+    print(report.name);
+    print("halo");
+  }
+
+  createReport(request, report) async {
+    final response = await request.post(
+        'https://web-production-c284.up.railway.app/laporan/add-laporan', {
+      'name': report.name,
+      'phone_num': report.phoneNum,
+      'email': report.email,
+      'case_name': report.caseName,
+      'victim_name': report.victimName,
+      'victim_description': report.victimDescription,
+      'crime_place': report.crimePlace,
+      'chronology': report.chronology
+    });
+    print(response);
+    return Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => const ReportSummary()),
+    );
+  }
+
   static const primaryColor = Color(0xFF2D55D0);
 
   @override
   Widget build(BuildContext context) {
+    // final request = context.watch<CookieRequest>();
     return Scaffold(
       appBar: AppBar(
           title: Text('Report'),
@@ -102,10 +156,6 @@ class _ReportFormState extends State<ReportForm> {
                       ),
                     ),
                     keyboardType: TextInputType.number,
-                    inputFormatters: <TextInputFormatter>[
-                      FilteringTextInputFormatter.digitsOnly
-                    ],
-
                     // Menambahkan behavior saat nama diketik
                     onChanged: (String? value) {
                       setState(() {
@@ -340,7 +390,7 @@ class _ReportFormState extends State<ReportForm> {
                     width: 120,
                     child: TextButton(
                       child: const Text(
-                        "Send Reply",
+                        "Report!",
                         style: TextStyle(color: Colors.white),
                       ),
                       style: ButtonStyle(
@@ -351,16 +401,17 @@ class _ReportFormState extends State<ReportForm> {
                       ),
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
-                          var map = {};
-                          map['name'] = _name;
-                          map['phoneNum'] = _phoneNum;
-                          data.add(map);
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                              content: Text('Data berhasil disimpan!'),
-                              backgroundColor: Colors.green,
-                            ),
-                          );
+                          final _report = new _Report(
+                              _name,
+                              _phoneNum,
+                              _email,
+                              _caseName,
+                              _victimName,
+                              _victimDescription,
+                              _crimePlace,
+                              _chronology);
+                          // createReport(request, _report);
+                          buatReport(context, _report);
                         }
                       },
                     ),

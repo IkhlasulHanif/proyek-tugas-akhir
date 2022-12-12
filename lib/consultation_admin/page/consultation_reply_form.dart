@@ -32,7 +32,7 @@ class _ConsultationReplyFormState extends State<ConsultationReplyForm> {
         }));
   }
 
-  static const primaryColor = Color(0xFF2D55D0);
+  static const primaryColor = Color(0xFF548AFF);
 
   @override
   Widget build(BuildContext context) {

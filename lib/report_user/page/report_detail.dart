@@ -32,68 +32,56 @@ class ReportDetail extends StatefulWidget {
 }
 
 class _ReportDetailState extends State<ReportDetail> {
-  static const primaryColor = Color(0xFF2D55D0);
+  static const primaryColor = Color(0xFF548AFF);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-            title: const Text(''),
-            backgroundColor: primaryColor,
-            leadingWidth: 64,
-            leading: IconButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              icon: Icon(Icons.arrow_back),
-              //replace with our own icon data.
-            )),
-        // Menambahkan drawer menu
-        body: Container(
-          padding: const EdgeInsets.all(20.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                widget.caseName,
-                style: const TextStyle(
-                  fontSize: 16.0,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(bottom: 20),
-              ),
-              Text("submitted by " + widget.name),
-              Text(widget.phoneNum),
-              Text(widget.email),
-              Padding(
-                padding: EdgeInsets.only(bottom: 20),
-              ),
-              Text("Victim Detail"),
-              Text(widget.victimName),
-              Text(widget.victimDescription),
-              Padding(
-                padding: EdgeInsets.only(bottom: 20),
-              ),
-              Text("Case Detail:"),
-              Text(widget.chronology),
-              Text(widget.crimePlace)
-            ],
-          ),
-        ),
-        floatingActionButton: Align(
-          alignment: Alignment.bottomRight,
-          child: FloatingActionButton(
-            backgroundColor: primaryColor,
+      appBar: AppBar(
+          title: const Text(''),
+          backgroundColor: primaryColor,
+          leadingWidth: 64,
+          leading: IconButton(
             onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const ReportForm()),
-              );
+              Navigator.pop(context);
             },
-            child: const Icon(Icons.report),
-          ),
-        ));
+            icon: Icon(Icons.arrow_back),
+            //replace with our own icon data.
+          )),
+      // Menambahkan drawer menu
+      body: Container(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              widget.caseName,
+              style: const TextStyle(
+                fontSize: 16.0,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(bottom: 20),
+            ),
+            Text("submitted by " + widget.name),
+            Text(widget.phoneNum),
+            Text(widget.email),
+            Padding(
+              padding: EdgeInsets.only(bottom: 20),
+            ),
+            Text("Victim Detail"),
+            Text(widget.victimName),
+            Text(widget.victimDescription),
+            Padding(
+              padding: EdgeInsets.only(bottom: 20),
+            ),
+            Text("Case Detail:"),
+            Text(widget.chronology),
+            Text(widget.crimePlace)
+          ],
+        ),
+      ),
+    );
   }
 }
