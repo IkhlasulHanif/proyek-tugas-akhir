@@ -3,9 +3,9 @@ import 'package:intl/intl.dart';
 import 'package:proyek_tugas_akhir/consultation_admin/utils/fetch_consultation.dart';
 
 import 'package:proyek_tugas_akhir/consultation_admin/page/consultation_detail.dart';
-import '../../laporan_admin/laporan_detail.dart';
-import '../../laporan_admin/list_laporan_admin.dart';
-import '../../laporan_admin/response_model.dart';
+import '../../laporan_admin/page/laporan_detail.dart';
+import '../../laporan_admin/utils/list_laporan_admin.dart';
+import '../../laporan_admin/model/response_model.dart';
 
 class StatusLaporan {
   static List<String> listStatus = [];

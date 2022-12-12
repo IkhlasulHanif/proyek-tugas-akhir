@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:proyek_tugas_akhir/laporan_admin/laporan_model.dart';
-import 'package:proyek_tugas_akhir/laporan_admin/response_model.dart';
+import 'package:proyek_tugas_akhir/laporan_admin/model/laporan_model.dart';
+import 'package:proyek_tugas_akhir/laporan_admin/model/response_model.dart';
 
 Future<List<Laporan>> fetchLaporan() async {
   var url =

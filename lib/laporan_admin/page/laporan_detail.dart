@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:proyek_tugas_akhir/laporan_admin/list_laporan_admin.dart';
+import 'package:proyek_tugas_akhir/laporan_admin/utils/list_laporan_admin.dart';
 import 'laporan_reply_form.dart';
 
 class LaporanDetail extends StatefulWidget {

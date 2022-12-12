@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:proyek_tugas_akhir/laporan_admin/laporan_model.dart';
-import 'package:proyek_tugas_akhir/laporan_admin/laporan_detail.dart';
-import 'package:proyek_tugas_akhir/laporan_admin/list_laporan_admin.dart';
+import 'package:proyek_tugas_akhir/laporan_admin/model/laporan_model.dart';
+import 'package:proyek_tugas_akhir/laporan_admin/page/laporan_detail.dart';
+import 'package:proyek_tugas_akhir/laporan_admin/utils/list_laporan_admin.dart';
 
-import '../admin/page/admin_page.dart';
+import '../../admin/page/admin_page.dart';
 
 class LaporanSummary extends StatefulWidget {
   const LaporanSummary({super.key});
