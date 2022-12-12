@@ -220,8 +220,7 @@ class _MyHomePageState extends State<MyHomePage> {
         children: [
           SpeedDialChild(
             child: const Icon(Icons.insert_comment),
-            label: "Consultation",
-            backgroundColor: primaryColor,
+            label: "Consultation", // Set background biru
             onTap: () {
               Navigator.pushReplacement(context,
                   MaterialPageRoute(builder: (context) => const MyFormPage()));
@@ -229,7 +228,6 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           SpeedDialChild(
             child: const Icon(Icons.description),
-            backgroundColor: primaryColor,
             label: "Report",
             onTap: () {},
           ),
