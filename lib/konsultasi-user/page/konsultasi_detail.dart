@@ -6,8 +6,8 @@ import 'package:proyek_tugas_akhir/konsultasi-user/page/form.dart';
 class DetailKonsultasi extends StatefulWidget {
   const DetailKonsultasi({
     super.key,
-    required this.title,
     required this.user,
+    required this.title,
     required this.date,
     required this.name,
     required this.description,
