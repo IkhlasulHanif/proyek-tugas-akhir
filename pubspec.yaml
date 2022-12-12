@@ -76,7 +76,7 @@ flutter:
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
   assets:
-    - assets/logo.png
+    - assets/LOGO.png
     - assets/ui.png
     - assets/lapor.png
     - assets/konsul.png
