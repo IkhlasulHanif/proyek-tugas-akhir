@@ -231,12 +231,7 @@ class _MyHomePageState extends State<MyHomePage> {
         children: [
           SpeedDialChild(
             child: const Icon(Icons.insert_comment),
-            label: "Consultation",
-<<<<<<< HEAD
-            backgroundColor: primaryColor,  // Set background biru
-=======
-            backgroundColor: primaryColor,
->>>>>>> main
+            label: "Consultation", // Set background biru
             onTap: () {
               Navigator.pushReplacement(
               context,
@@ -246,7 +241,6 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           SpeedDialChild(
             child: const Icon(Icons.description),
-            backgroundColor: primaryColor,
             label: "Report",
             onTap: () {},
           )
