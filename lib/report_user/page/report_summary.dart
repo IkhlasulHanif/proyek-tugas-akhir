@@ -20,7 +20,7 @@ class ReportSummary extends StatefulWidget {
 class _ReportSummaryState extends State<ReportSummary> {
   late Future<List<Report>> futureData;
 
-  static const primaryColor = Color(0xFF2D55D0);
+  static const primaryColor = Color(0xFF548AFF);
 
   @override
   Widget build(BuildContext context) {

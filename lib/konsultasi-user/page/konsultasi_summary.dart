@@ -20,7 +20,7 @@ class _KonsultasiSummaryState extends State<KonsultasiSummary> {
     futureData = fetchConsultation();
   }
 
-  static const primaryColor = Color(0xFF2D55D0);
+  static const primaryColor = Color(0xFF548AFF);
 
   @override
   Widget build(BuildContext context) {
@@ -151,10 +151,8 @@ class _KonsultasiSummaryState extends State<KonsultasiSummary> {
                                 )
                               ],
                             ),
-                            
                           ),
                         ));
-                        
               }
             }
           }),

@@ -22,7 +22,7 @@ class _ReportFormState extends State<ReportForm> {
   String _crimePlace = "";
   String _chronology = "";
 
-  static const primaryColor = Color(0xFF2D55D0);
+  static const primaryColor = Color(0xFF548AFF);
 
   @override
   Widget build(BuildContext context) {

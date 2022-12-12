@@ -28,7 +28,10 @@ class _LoginPageState extends State<LoginPage> {
     final request = context.watch<CookieRequest>();
     final user = context.watch<UserManagement>();
     return Scaffold(
-        appBar: AppBar(title: const Text('Login Page')),
+        appBar: AppBar(
+          title: const Text('Login Page'),
+          backgroundColor: Color(0xFF548AFF),
+        ),
         body: Form(
             key: _loginFormKey,
             child: Column(
