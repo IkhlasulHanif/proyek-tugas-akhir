@@ -1,37 +1,39 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:provider/provider.dart';
 import 'package:proyek_tugas_akhir/konsultasi-user/fetch/fetch_data.dart';
 import 'package:proyek_tugas_akhir/konsultasi-user/page/form.dart';
 import 'package:proyek_tugas_akhir/konsultasi-user/page/konsultasi_detail.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'konsultasi-user/page/konsultasi_detail.dart';
 import 'konsultasi-user/fetch/fetch_data.dart';
+import 'home & login/page/loginpage.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  // This widget is the root of your application.
+  const MyApp({Key? key}) : super(key: key);
+  static const ROUTE_NAME = '/home';
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
+    return Provider(
+      create: (_) {
+        CookieRequest request = CookieRequest();
+        return request;
+      },
+      child: MaterialApp(
+        title: 'Flutter App',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: const MyHomePage(title: 'Flutter App'),
+        routes: {
+          "/login": (BuildContext context) => const LoginPage(),
+        },
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
@@ -66,20 +68,8 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   static final List<Widget> _widgetOptions = <Widget>[
-    const Card(
-      child: Padding(
-      padding: EdgeInsets.all(20.0),
-      child: Text(
-        'Speak Up Now merupakan portal informasi dan pelaporan '
-        'pelecehan seksual dalam lingkungan Universitas Indonesia.'
-        'Aplikasi ini bertujuan untuk menjadi salah satu penyedia '
-        'jalan keluar dari masalah yang dihadapi para penyintas '
-        'pelecehan seksual. Mengingat isu mengenai kejahatan gender, '
-        'termasuk tindak pelecehan seksual, masih hangat dan perlu '
-        'untuk digaungkan lebih keras lagi, Speak Up Now hadir sebagai'
-        'salah satu wadah untuk menyebarluaskan informasi tersebut.',
-        ),
-      )
+    const Text(
+      'Home',
     ),
     Scaffold(
       appBar: AppBar(
@@ -225,7 +215,6 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(child: _widgetOptions.elementAt(_selectedIndex)),
-
       floatingActionButton: SpeedDial(
         child: const Icon(Icons.add),
         children: [
@@ -233,20 +222,25 @@ class _MyHomePageState extends State<MyHomePage> {
             child: const Icon(Icons.insert_comment),
             label: "Consultation", // Set background biru
             onTap: () {
-              Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => const MyFormPage()));
+              Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (context) => const MyFormPage()));
             },
           ),
           SpeedDialChild(
             child: const Icon(Icons.description),
             label: "Report",
             onTap: () {},
+          ),
+          SpeedDialChild(
+            child: const Icon(Icons.login_rounded),
+            label: "Login",
+            backgroundColor: primaryColor,
+            onTap: () {
+              Navigator.of(context).pushNamed('/login');
+            },
           )
         ],
       ),
-
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
