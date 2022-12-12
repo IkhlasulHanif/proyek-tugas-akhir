@@ -20,13 +20,12 @@ class _Konsultasi {
   String description = "";
   String date = "";
   String contactable = "";
-  _Konsultasi(
-      this.name, this.title, this.description, this.date, this.contactable);
+  _Konsultasi(this.name, this.title, this.description, this.date, this.contactable);
 }
 
 class _KonsultasiFormState extends State<KonsultasiForm> {
   final _formKey = GlobalKey<FormState>();
-  String _date = "2022-12-13";
+  String _date = "";
   String _name = "";
   String _title = "";
   String _description = "";
@@ -38,15 +37,17 @@ class _KonsultasiFormState extends State<KonsultasiForm> {
   List<String> program = ["YES", "NO"];
   int index = -1;
 
-  createKonsultasi(request, konsultasi) async {
+
+
+  createKonsultasi(request, konsultasi) async{
     final response = await request.post(
-        'https://web-production-c284.up.railway.app/curhat/add-konsultasi-flutter/',
-        {
-          'name': konsultasi.name,
-          'title': konsultasi.title,
-          'description': konsultasi.description,
-          'contactable': konsultasi.contactable,
-        });
+      'https://web-production-c284.up.railway.app/curhat/add-konsultasi-flutter', {
+      'name': konsultasi.name,
+      'date': konsultasi.date,
+      'title': konsultasi.title,
+      'description': konsultasi.description,
+      'contactable': konsultasi.contactable,
+    });
     return Navigator.pushReplacement(
       context,
       MaterialPageRoute(builder: (context) => const KonsultasiSummary()),
@@ -200,8 +201,7 @@ class _KonsultasiFormState extends State<KonsultasiForm> {
                           setState(() {
                             _contactable = "Y";
                             _yes = value!;
-                            print("Y");
-                            print(_yes);
+                            print(_contactable);
                           });
                         },
                       ),
@@ -212,7 +212,7 @@ class _KonsultasiFormState extends State<KonsultasiForm> {
                           setState(() {
                             _no = value!;
                             _contactable = "N";
-                            print(_no);
+                            print(_contactable);
                           });
                         },
                       ),
@@ -238,7 +238,11 @@ class _KonsultasiFormState extends State<KonsultasiForm> {
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
                           final _konsultasi = new _Konsultasi(
-                              _name, _date, _title, _description, _contactable);
+                              _name,
+                              _date,
+                              _title,
+                              _description,
+                              _contactable);
                           createKonsultasi(request, _konsultasi);
                         }
                       },
