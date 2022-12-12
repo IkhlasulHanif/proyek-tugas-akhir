@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:proyek_tugas_akhir/konsultasi-user/page/konsultasi_summary.dart';
 import 'package:proyek_tugas_akhir/report_user/page/report_summary.dart';
 import 'package:proyek_tugas_akhir/user/page/user_page.dart';
 
@@ -36,7 +37,7 @@ class DrawerWidget extends StatelessWidget {
             onTap: () {
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => const ReportSummary()),
+                MaterialPageRoute(builder: (context) => const KonsultasiSummary()),
               );
             },
           ),
