@@ -140,13 +140,22 @@ class _LoginPageState extends State<LoginPage> {
                                     user.setUser(loginuser);
                                     print(loginuser.username);
                                     print(loginuser.is_konsulir);
-                                    Navigator.pushReplacement(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: ((context) =>
-                                                const UserPage(
-                                                  title: '',
-                                                ))));
+                                    if (loginuser.is_konsulir)
+                                      Navigator.pushReplacement(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: ((context) =>
+                                                  const AdminPage(
+                                                    title: '',
+                                                  ))));
+                                    else
+                                      Navigator.pushReplacement(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: ((context) =>
+                                                  const UserPage(
+                                                    title: '',
+                                                  ))));
                                   }
                                 } catch (_) {
                                   print("error");
