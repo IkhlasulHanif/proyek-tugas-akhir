@@ -32,7 +32,7 @@ class ReportDetail extends StatefulWidget {
 }
 
 class _ReportDetailState extends State<ReportDetail> {
-  static const primaryColor = Color(0xFF2D55D0);
+  static const primaryColor = Color(0xFF548AFF);
 
   @override
   Widget build(BuildContext context) {

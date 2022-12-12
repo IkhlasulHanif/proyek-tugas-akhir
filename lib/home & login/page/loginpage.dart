@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:proyek_tugas_akhir/admin/page/admin_page.dart';
 import 'package:proyek_tugas_akhir/home%20&%20login/model/loginpage-model.dart';
 import 'package:proyek_tugas_akhir/home%20&%20login/util/user_provider.dart';
 import 'package:proyek_tugas_akhir/main.dart';
@@ -27,7 +28,10 @@ class _LoginPageState extends State<LoginPage> {
     final request = context.watch<CookieRequest>();
     final user = context.watch<UserManagement>();
     return Scaffold(
-        appBar: AppBar(title: const Text('Login Page')),
+        appBar: AppBar(
+          title: const Text('Login Page'),
+          backgroundColor: Color(0xFF548AFF),
+        ),
         body: Form(
             key: _loginFormKey,
             child: Column(
@@ -100,11 +104,21 @@ class _LoginPageState extends State<LoginPage> {
                           user.setUser(loginuser);
                           print(loginuser.username);
                           print(loginuser.is_konsulir);
-                          Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                  builder: ((context) =>
-                                      const ReportSummary())));
+                          if (loginuser.is_konsulir) {
+                            Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: ((context) => const AdminPage(
+                                          title: '',
+                                        ))));
+                          } else {
+                            Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: ((context) => const UserPage(
+                                          title: '',
+                                        ))));
+                          }
                         }
                       } catch (_) {
                         print("error");

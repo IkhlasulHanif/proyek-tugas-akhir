@@ -24,8 +24,7 @@ class DetailKonsultasi extends StatefulWidget {
 }
 
 class _DetailKonsultasiState extends State<DetailKonsultasi> {
-  static const primaryColor = Color(0xFF2D55D0);
-
+  static const primaryColor = Color(0xFF548AFF);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,8 +40,7 @@ class _DetailKonsultasiState extends State<DetailKonsultasi> {
               //replace with our own icon data.
             )),
         // Menambahkan drawer menu
-        body: 
-        Container(
+        body: Container(
           padding: const EdgeInsets.all(20.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -79,13 +77,11 @@ class _DetailKonsultasiState extends State<DetailKonsultasi> {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(
-                    builder: (context) => const MyFormPage()),
+                MaterialPageRoute(builder: (context) => const MyFormPage()),
               );
             },
             child: const Icon(Icons.reply_rounded),
           ),
-        )
-        );
+        ));
   }
 }
