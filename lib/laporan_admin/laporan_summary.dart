@@ -5,7 +5,6 @@ import 'package:proyek_tugas_akhir/laporan_admin/list_laporan_admin.dart';
 
 import '../admin/page/admin_page.dart';
 
-
 class LaporanSummary extends StatefulWidget {
   const LaporanSummary({super.key});
 

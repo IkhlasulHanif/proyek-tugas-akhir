@@ -10,7 +10,8 @@ import '../../laporan_admin/response_model.dart';
 class StatusLaporan {
   static List<String> listStatus = [];
 }
-void main() async{
+
+void getStatus() async{
   List<ResponseLaporan> allResponse = await fetchAllResponse();
   for(var i =0; i < allResponse.length; i ++){
     String value = allResponse[i].fields.statusCase;
@@ -18,12 +19,12 @@ void main() async{
     if(value == "true") StatusLaporan.listStatus.add("On Process");
     if(value == "false") StatusLaporan.listStatus.add("Rejected");
   }
-  runApp(const MyApp());
 }
 
-// void main() {
-//   runApp(const MyApp());
-// }
+void main() {
+  getStatus();
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -331,11 +332,11 @@ class _AdminPageState extends State<AdminPage> {
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.end,
                                   children: [
-                                    Text( // Status
-                                        StatusLaporan.listStatus[index],
-                                        style: const TextStyle(
-                                          fontSize: 16.0,
-                                        )),
+                                    // Text( // Status
+                                    //     StatusLaporan.listStatus[index],
+                                    //     style: const TextStyle(
+                                    //       fontSize: 16.0,
+                                    //     )),
                                     Container(
                                       margin: EdgeInsets.only(top: 10),
                                       padding: const EdgeInsets.only(
@@ -351,7 +352,8 @@ class _AdminPageState extends State<AdminPage> {
                                           Radius.circular(7),
                                         ),
                                       ),
-                                      child: Text(
+                                      child: 
+                                      Text(
                                         'Delete',
                                         style: TextStyle(
                                           color: Colors.red,

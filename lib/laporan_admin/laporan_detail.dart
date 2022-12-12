@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-
 import 'package:proyek_tugas_akhir/laporan_admin/list_laporan_admin.dart';
 import 'laporan_reply_form.dart';
 
@@ -61,12 +59,22 @@ class _LaporanDetailState extends State<LaporanDetail> {
                 Text(
                   widget.caseName,
                   style: const TextStyle(
+                    fontSize: 30.0,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 20),
+                  child:Text(
+                  widget.crimePlace,
+                  style: const TextStyle(
                     fontSize: 16.0,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
+                ),
                 Text(
-                  widget.crimePlace,
+                  "Informant: ",
                   style: const TextStyle(
                     fontSize: 16.0,
                     fontWeight: FontWeight.w600,
@@ -76,18 +84,26 @@ class _LaporanDetailState extends State<LaporanDetail> {
                   widget.name,
                   style: const TextStyle(
                     fontSize: 16.0,
-                    fontWeight: FontWeight.w600,
+                    fontWeight: FontWeight.w400,
                   ),
                 ),
                 Text(
-                  widget.phoneNum,
+                  "Contact Person: ",
                   style: const TextStyle(
                     fontSize: 16.0,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
                 Text(
-                  widget.email,
+                  widget.phoneNum +"/"+widget.email,
+                  style: const TextStyle(
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+                
+                Text(
+                  "Victim:",
                   style: const TextStyle(
                     fontSize: 16.0,
                     fontWeight: FontWeight.w600,
@@ -97,23 +113,46 @@ class _LaporanDetailState extends State<LaporanDetail> {
                   widget.victimName,
                   style: const TextStyle(
                     fontSize: 16.0,
-                    fontWeight: FontWeight.w600,
+                    fontWeight: FontWeight.w400,
                   ),
                 ),
                 Padding(
+                  padding: const EdgeInsets.only(bottom: 20),
+                ),
+                Padding(
                   padding: EdgeInsets.only(top: 5),
-                  child: Row(children: [
-                    Flexible(
+                  child: Column(children: [
+                    Text(
+                      "Victim Description", 
+                      style: const TextStyle(
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.w600,
+                    ),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [Flexible(
                       child: Text(widget.victimDescription),
-                    )
+                    )],
+                    ),
                   ]),
                 ),
                 Padding(
                   padding: EdgeInsets.only(top: 5),
-                  child: Row(children: [
-                    Flexible(
+                  child: Column(children: [
+                    Text(
+                      "Chronology", 
+                      style: const TextStyle(
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.w600,
+                    ),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [Flexible(
                       child: Text(widget.chronology),
-                    )
+                    )],
+                    ),
                   ]),
                 ),
               ],
@@ -151,7 +190,7 @@ class _LaporanDetailState extends State<LaporanDetail> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                "Reply dari Admin ${snapshot.data![0].fields.adminName}",
+                                "Reply dari Admin",
                                 style: TextStyle(
                                     fontWeight: FontWeight.w600, fontSize: 15),
                               ),
