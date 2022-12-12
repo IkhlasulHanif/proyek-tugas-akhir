@@ -6,8 +6,8 @@ import 'package:proyek_tugas_akhir/laporan_admin/response_model.dart';
 Future<List<Laporan>> fetchLaporan() async {
   var url =
       Uri.parse(
-        // 'https://web-production-c284.up.railway.app/laporan-admin/json/'
-        'http://localhost:8000/laporan-admin/json'
+        'https://web-production-c284.up.railway.app/laporan-admin/json/'
+        // 'http://localhost:8000/laporan-admin/json'
         );
   var response = await http.get(
     url,
@@ -31,8 +31,8 @@ Future<List<Laporan>> fetchLaporan() async {
 Future<List<ResponseLaporan>> fetchAllResponse() async {
   var url =
       Uri.parse(
-        // 'https://web-production-c284.up.railway.app/laporan-admin/response/json/'
-        'http://localhost:8000/laporan-admin/response/json'
+        'https://web-production-c284.up.railway.app/laporan-admin/response/json/'
+        // 'http://localhost:8000/laporan-admin/response/json'
         );
   var response = await http.get(
     url,
@@ -55,8 +55,8 @@ Future<List<ResponseLaporan>> fetchAllResponse() async {
 
 Future<List<ResponseLaporan>> fetchResponse(int id) async {
   var url = Uri.parse(
-      // 'https://web-production-c284.up.railway.app/laporan-admin/response/$id'
-      'http://localhost:8000/laporan-admin/response/$id'
+      'https://web-production-c284.up.railway.app/laporan-admin/response/$id'
+      // 'http://localhost:8000/laporan-admin/response/$id'
       );
   var response = await http.get(
     url,
@@ -78,8 +78,8 @@ Future<List<ResponseLaporan>> fetchResponse(int id) async {
 Future<http.Response> deleteLaporan(String id) async {
   final http.Response response = await http.delete(
     Uri.parse(
-        // 'https://web-production-c284.up.railway.app/laporan-admin/delete/$id'
-        'http://localhost:8000/laporan-admin/delete/$id'
+        'https://web-production-c284.up.railway.app/laporan-admin/delete/$id'
+        // 'http://localhost:8000/laporan-admin/delete/$id'
         ),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
