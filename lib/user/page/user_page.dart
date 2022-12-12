@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:intl/intl.dart';
-import 'package:proyek_tugas_akhir/consultation_admin/utils/fetch_consultation.dart';
+import 'package:proyek_tugas_akhir/konsultasi-user/fetch/fetch_data.dart';
 import 'package:proyek_tugas_akhir/report_user/page/report_detail.dart';
 import 'package:proyek_tugas_akhir/report_user/utils/fetch_report.dart';
+import 'package:provider/provider.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
 
+import '../../konsultasi-user/page/form.dart';
 import '../../konsultasi-user/page/konsultasi_detail.dart';
 import '../../report_user/page/report_form.dart';
 
@@ -57,7 +61,7 @@ class UserPage extends StatefulWidget {
 class _UserPage extends State<UserPage> {
   int _counter = 0;
   int _selectedIndex = 0;
-  static const primaryColor = Color(0xFF2D55D0);
+  static const primaryColor = Color(0xFF548AFF);
 
   void _onItemTapped(int index) {
     setState(() {
@@ -66,8 +70,156 @@ class _UserPage extends State<UserPage> {
   }
 
   static final List<Widget> _widgetOptions = <Widget>[
-    const Text(
-      'Home',
+    Scaffold(
+      appBar: AppBar(
+        title: SizedBox(
+          width: 100,
+          height: 40,
+          child: Image.asset(
+            'assets/LOGO.png',
+          ),
+        ),
+        backgroundColor: primaryColor,
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              padding: EdgeInsets.all(10),
+            ),
+            Center(
+                child: Column(
+              children: [
+                RichText(
+                  text: TextSpan(
+                    text: 'Speak Up',
+                    style: TextStyle(
+                        fontFamily: 'Poppins',
+                        color: Colors.black,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 24),
+                    /*defining default style is optional */
+                    children: <TextSpan>[
+                      TextSpan(
+                          text: ' Now',
+                          style: TextStyle(
+                              fontFamily: 'Poppins',
+                              color: Colors.red,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 24)),
+                    ],
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.all(10),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(10),
+                  child: Text(
+                      textAlign: TextAlign.center,
+                      'Speak Up Now merupakan portal informasi dan pelaporan pelecehan seksual dalam lingkungan Universitas Indonesia.'),
+                ),
+                Container(
+                  padding: EdgeInsets.all(10),
+                ),
+                SizedBox(
+                  width: 80,
+                  height: 80,
+                  child: Image.asset(
+                    'assets/ui.png',
+                  ),
+                ),
+                Text(
+                  textAlign: TextAlign.center,
+                  'Universitas Indonesia',
+                  style: TextStyle(
+                      fontFamily: 'Poppins', fontWeight: FontWeight.w500),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(10),
+                  child: Text(
+                    textAlign: TextAlign.center,
+                    'Bekerja sama dengan Universitas Indonesia untuk membangun kampus sebagai ruang aman.',
+                    style: TextStyle(
+                        fontFamily: 'Poppins', fontWeight: FontWeight.w400),
+                  ),
+                ),
+                SizedBox(
+                  width: 80,
+                  height: 80,
+                  child: Image.asset(
+                    'assets/konsul.png',
+                  ),
+                ),
+                Text(
+                  textAlign: TextAlign.center,
+                  'Konsultasi',
+                  style: TextStyle(
+                      fontFamily: 'Poppins', fontWeight: FontWeight.w500),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(10),
+                  child: Text(
+                    textAlign: TextAlign.center,
+                    'Memberikan layanan terbaik untuk para penyintas memahami kondisinya.',
+                    style: TextStyle(
+                        fontFamily: 'Poppins', fontWeight: FontWeight.w400),
+                  ),
+                ),
+                SizedBox(
+                  width: 80,
+                  height: 80,
+                  child: Image.asset(
+                    'assets/lapor.png',
+                  ),
+                ),
+                Text(
+                  textAlign: TextAlign.center,
+                  'Laporan',
+                  style: TextStyle(
+                      fontFamily: 'Poppins', fontWeight: FontWeight.w500),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(10),
+                  child: Text(
+                    textAlign: TextAlign.center,
+                    'Menjadi teman pertama para penyintas untuk mendapatkan keadilan.',
+                    style: TextStyle(
+                        fontFamily: 'Poppins', fontWeight: FontWeight.w400),
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.all(15),
+                ),
+                SizedBox(
+                  width: 180,
+                  height: 180,
+                  child: Image.asset(
+                    'assets/g20.png',
+                  ),
+                ),
+                Text(
+                  textAlign: TextAlign.center,
+                  'Mendukung G20',
+                  style: TextStyle(
+                      fontFamily: 'Poppins',
+                      fontWeight: FontWeight.w500,
+                      fontSize: 20),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(10),
+                  child: Text(
+                    textAlign: TextAlign.center,
+                    'Kasus kekerasan seksual terhadap perempuan dan anak akan berdampak pada perekonomian negara dan hilangnya masa pendidikan anak sebagai penerus bangsa ke depan. Indonesia bisa mendorong perlindungan perempuan di G-20.',
+                    style: TextStyle(
+                        fontFamily: 'Poppins', fontWeight: FontWeight.w400),
+                  ),
+                ),
+              ],
+            ))
+          ],
+        ),
+      ),
     ),
     Scaffold(
       appBar: AppBar(
@@ -77,7 +229,7 @@ class _UserPage extends State<UserPage> {
       // Menambahkan drawer menu
       // drawer: DrawerClass(parentScreen: ScreenName.MyWatchList),
       body: FutureBuilder(
-          future: fetchReport(),
+          future: fetchConsultation(),
           builder: (context, AsyncSnapshot snapshot) {
             if (snapshot.data == null) {
               return const Center(child: CircularProgressIndicator());
@@ -101,16 +253,16 @@ class _UserPage extends State<UserPage> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => DetailKonsultasi(
-                                          user: 
-                                            snapshot.data![index].fields.user,
-                                          title: 
-                                            snapshot.data![index].fields.title,
-                                          date: 
-                                            snapshot.data![index].fields.date,
-                                          name: 
-                                            snapshot.data![index].fields.name,
-                                          description: 
-                                            snapshot.data![index].fields.description,
+                                          user:
+                                              snapshot.data![index].fields.user,
+                                          title: snapshot
+                                              .data![index].fields.title,
+                                          date:
+                                              snapshot.data![index].fields.date,
+                                          name:
+                                              snapshot.data![index].fields.name,
+                                          description: snapshot
+                                              .data![index].fields.description,
                                         )));
                           },
                           child: Container(
@@ -141,21 +293,20 @@ class _UserPage extends State<UserPage> {
                                           fontSize: 16.0,
                                           fontWeight: FontWeight.bold,
                                         )),
-                                    Text(
-                                        "${snapshot.data![index].fields.name}",
+                                    Text("${snapshot.data![index].fields.name}",
                                         style: const TextStyle(
                                           fontSize: 16.0,
                                         )),
-                                      if (snapshot.data![index].fields.description
+                                    if (snapshot.data![index].fields.description
                                             .length >
                                         20)
-                                         Text(
+                                      Text(
                                           "${snapshot.data![index].fields.description.substring(0, 20)}...",
                                           style: const TextStyle(
                                             fontSize: 16.0,
                                           )),
                                     Text(
-                                       "${snapshot.data![index].fields.description}",
+                                        "${snapshot.data![index].fields.description}",
                                         style: const TextStyle(
                                           fontSize: 16.0,
                                         )),
@@ -204,7 +355,7 @@ class _UserPage extends State<UserPage> {
       // Menambahkan drawer menu
       // drawer: DrawerClass(parentScreen: ScreenName.MyWatchList),
       body: FutureBuilder(
-          future: fetchReport(),
+          future: fetchConsultation(),
           builder: (context, AsyncSnapshot snapshot) {
             if (snapshot.data == null) {
               return const Center(child: CircularProgressIndicator());
@@ -329,6 +480,7 @@ class _UserPage extends State<UserPage> {
 
   @override
   Widget build(BuildContext context) {
+    final request = context.watch<CookieRequest>();
     return Scaffold(
         body: Center(child: _widgetOptions.elementAt(_selectedIndex)),
         bottomNavigationBar: BottomNavigationBar(
@@ -356,18 +508,30 @@ class _UserPage extends State<UserPage> {
           currentIndex: _selectedIndex, //New
           onTap: _onItemTapped, //New
         ),
-        floatingActionButton: Align(
-          alignment: Alignment.bottomRight,
-          child: FloatingActionButton(
-            backgroundColor: primaryColor,
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const ReportForm()),
-              );
-            },
-            child: const Icon(Icons.plus_one),
-          ),
+        floatingActionButton: SpeedDial(
+          child: const Icon(Icons.add),
+          children: [
+            SpeedDialChild(
+              child: const Icon(Icons.insert_comment),
+              label: "Consultation", // Set background biru
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const MyFormPage()));
+              },
+            ),
+            SpeedDialChild(
+              child: const Icon(Icons.description),
+              label: "Report",
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const ReportForm()),
+                );
+              },
+            )
+          ],
         ));
   }
 }

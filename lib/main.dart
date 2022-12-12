@@ -34,6 +34,7 @@ class MyApp extends StatelessWidget {
         title: 'Flutter App',
         theme: ThemeData(
           primarySwatch: Colors.blue,
+          fontFamily: 'Poppins',
         ),
         home: const LoginPage(),
         routes: {
