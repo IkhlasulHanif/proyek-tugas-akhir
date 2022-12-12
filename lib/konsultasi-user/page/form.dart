@@ -10,7 +10,7 @@ var data = <Map>[];
 class MyFormPage extends StatefulWidget {
   const MyFormPage({super.key});
 
-   @override
+  @override
   State<MyFormPage> createState() => _MyFormPageState();
 }
 
@@ -55,7 +55,7 @@ class _MyFormPageState extends State<MyFormPage> {
               // Navigator.pop(context);
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const MyHomePage(title: '',)),
+                MaterialPageRoute(builder: (context) => const MyHomePage()),
               );
             },
             icon: Icon(Icons.arrow_back),
@@ -252,7 +252,6 @@ class _MyFormPageState extends State<MyFormPage> {
           ),
         ),
       ),
-      
     );
   }
 }

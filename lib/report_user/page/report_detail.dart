@@ -1,29 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import 'package:proyek_tugas_akhir/konsultasi-user/page/form.dart';
+import 'report_form.dart';
 
-class DetailKonsultasi extends StatefulWidget {
-  const DetailKonsultasi({
+class ReportDetail extends StatefulWidget {
+  const ReportDetail({
     super.key,
     required this.user,
-    required this.title,
-    required this.date,
     required this.name,
-    required this.description,
+    required this.phoneNum,
+    required this.email,
+    required this.caseName,
+    required this.victimName,
+    required this.victimDescription,
+    required this.crimePlace,
+    required this.chronology,
   });
 
-  final String title;
   final int user;
-  final DateTime date;
   final String name;
-  final String description;
+  final String phoneNum;
+  final String email;
+  final String caseName;
+  final String victimName;
+  final String victimDescription;
+  final String crimePlace;
+  final String chronology;
 
   @override
-  State<DetailKonsultasi> createState() => _DetailKonsultasiState();
+  State<ReportDetail> createState() => _ReportDetailState();
 }
 
-class _DetailKonsultasiState extends State<DetailKonsultasi> {
+class _ReportDetailState extends State<ReportDetail> {
   static const primaryColor = Color(0xFF2D55D0);
 
   @override
@@ -41,14 +49,13 @@ class _DetailKonsultasiState extends State<DetailKonsultasi> {
               //replace with our own icon data.
             )),
         // Menambahkan drawer menu
-        body: 
-        Container(
+        body: Container(
           padding: const EdgeInsets.all(20.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                widget.title,
+                widget.caseName,
                 style: const TextStyle(
                   fontSize: 16.0,
                   fontWeight: FontWeight.w600,
@@ -56,19 +63,22 @@ class _DetailKonsultasiState extends State<DetailKonsultasi> {
               ),
               Padding(
                 padding: EdgeInsets.only(bottom: 20),
-                child: Text(
-                  DateFormat.yMMMMd().format(widget.date),
-                ),
               ),
-              Text(widget.name),
+              Text("submitted by " + widget.name),
+              Text(widget.phoneNum),
+              Text(widget.email),
               Padding(
-                padding: EdgeInsets.only(top: 5),
-                child: Row(children: [
-                  Flexible(
-                    child: Text(widget.description),
-                  )
-                ]),
+                padding: EdgeInsets.only(bottom: 20),
               ),
+              Text("Victim Detail"),
+              Text(widget.victimName),
+              Text(widget.victimDescription),
+              Padding(
+                padding: EdgeInsets.only(bottom: 20),
+              ),
+              Text("Case Detail:"),
+              Text(widget.chronology),
+              Text(widget.crimePlace)
             ],
           ),
         ),
@@ -79,13 +89,11 @@ class _DetailKonsultasiState extends State<DetailKonsultasi> {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(
-                    builder: (context) => const MyFormPage()),
+                MaterialPageRoute(builder: (context) => const ReportForm()),
               );
             },
-            child: const Icon(Icons.reply_rounded),
+            child: const Icon(Icons.report),
           ),
-        )
-        );
+        ));
   }
 }
