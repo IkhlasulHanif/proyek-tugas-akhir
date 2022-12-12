@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:proyek_tugas_akhir/admin/page/admin_page.dart';
 import 'package:proyek_tugas_akhir/home%20&%20login/model/loginpage-model.dart';
+import 'package:proyek_tugas_akhir/home%20&%20login/page/registerpage.dart';
 import 'package:proyek_tugas_akhir/home%20&%20login/util/user_provider.dart';
 import 'package:proyek_tugas_akhir/main.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
@@ -124,7 +125,7 @@ class _LoginPageState extends State<LoginPage> {
                               },
                             ),
                           ),
-                          TextButton(
+                          ElevatedButton(
                             onPressed: () async {
                               if (_loginFormKey.currentState!.validate()) {
                                 try {
@@ -165,7 +166,24 @@ class _LoginPageState extends State<LoginPage> {
                             child: const Text('Login'),
                           ),
                         ],
-                      ))
+                      )),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      const Text('Belum mempunyai akun?'),
+                      TextButton(
+                        child: const Text(
+                          'Daftar Di sini',
+                        ),
+                        onPressed: () {
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => RegisterPage()));
+                        },
+                      )
+                    ],
+                  )
                 ],
               ))),
     );
