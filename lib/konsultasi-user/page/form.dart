@@ -1,11 +1,6 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:intl/intl.dart';
-import 'package:proyek_tugas_akhir/konsultasi-user/page/konsultasi_detail.dart';
-import 'package:proyek_tugas_akhir/konsultasi-user/page/konsultasi_summary.dart';
-import 'package:proyek_tugas_akhir/main.dart';
-
-var data = <Map>[];
+import 'package:http/http.dart' as http;
 
 class MyFormPage extends StatefulWidget {
   const MyFormPage({super.key});
@@ -16,14 +11,34 @@ class MyFormPage extends StatefulWidget {
 
 class _MyFormPageState extends State<MyFormPage> {
   final _formKey = GlobalKey<FormState>();
+  int _user = 0;
+  String _date = "";
   String _name = "";
   String _title = "";
   String _description = "";
+  String _contactable = "";
+
   bool _yes = false;
   bool _no = false;
 
   List<String> program = ["YES", "NO"];
   int index = -1;
+
+  Future<void> submit(BuildContext context) async {
+    final response = await http.post(
+        Uri.parse(
+            'https://web-production-c284.up.railway.app/curhat/add-konsultasi-flutter'),
+        headers: <String, String>{'Content-Type': 'application/json'},
+        body: jsonEncode(<String, dynamic>{
+          'user': _user,
+          'date': _date,
+          'name': _name,
+          'title': _title,
+          'description': _description,
+          'contactable': _contactable,
+          // 'pk': widget.pk,
+        }));
+  }
 
   static const primaryColor = Color(0xFF2D55D0);
 
@@ -36,27 +51,16 @@ class _MyFormPageState extends State<MyFormPage> {
             : -1;
     return Scaffold(
       appBar: AppBar(
-          title: Text('Fill New Consultation Form'),
+          title: const Text('Fill New Consultation Form'),
           backgroundColor: primaryColor,
-          // automaticallyImplyLeading: false,
-          // leadingWidth: 100,
-          // leading: ElevatedButton.icon(
-          //   onPressed: () => Navigator.of(context).pop(),
-          //   icon: const Icon(Icons.arrow_back),
-          //   label: Text(''),
-          //   style: ElevatedButton.styleFrom(
-          //     elevation: 0,
-          //     backgroundColor: Colors.transparent,
-          //   ),
-          // ),
           leadingWidth: 64,
           leading: IconButton(
             onPressed: () {
-              // Navigator.pop(context);
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const MyHomePage()),
-              );
+              Navigator.pop(context);
+              // Navigator.push(
+              //   context,
+              //   MaterialPageRoute(builder: (context) => const MyHomePage()),
+              // );
             },
             icon: Icon(Icons.arrow_back),
             //replace with our own icon data.
@@ -69,31 +73,25 @@ class _MyFormPageState extends State<MyFormPage> {
             child: Column(
               children: [
                 Padding(
-                  // Menggunakan padding sebesar 8 pixels
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
                     decoration: InputDecoration(
                       icon: Icon(Icons.people),
                       labelText: "Name",
-                      // Menambahkan icon agar lebih intuitif
-                      // Menambahkan circular border agar lebih rapi
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(5.0),
                       ),
                     ),
-                    // Menambahkan behavior saat nama diketik
                     onChanged: (String? value) {
                       setState(() {
                         _name = value!;
                       });
                     },
-                    // Menambahkan behavior saat data disimpan
                     onSaved: (String? value) {
                       setState(() {
                         _name = value!;
                       });
                     },
-                    // Validator sebagai validasi form
                     validator: (String? value) {
                       if (value == null || value.isEmpty) {
                         return 'Name can\'t be empty!';
@@ -103,19 +101,15 @@ class _MyFormPageState extends State<MyFormPage> {
                   ),
                 ),
                 Padding(
-                  // Menggunakan padding sebesar 8 pixels
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
                     decoration: InputDecoration(
                       icon: Icon(Icons.title_rounded),
                       labelText: "Title",
-                      // Menambahkan icon agar lebih intuitif
-                      // Menambahkan circular border agar lebih rapi
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(5.0),
                       ),
                     ),
-                    // Menambahkan behavior saat nama diketik
                     onChanged: (String? value) {
                       setState(() {
                         _title = value!;
@@ -165,7 +159,7 @@ class _MyFormPageState extends State<MyFormPage> {
                     // Validator sebagai validasi form
                     validator: (String? value) {
                       if (value == null || value.isEmpty) {
-                        return 'Title can\'t be empty!';
+                        return 'Description can\'t be empty!';
                       }
                       return null;
                     },
@@ -190,10 +184,10 @@ class _MyFormPageState extends State<MyFormPage> {
                         value: _yes,
                         onChanged: (bool? value) {
                           setState(() {
+                            _contactable = "Y";
                             _yes = value!;
-                            if (value) {
-                              _no = false;
-                            }
+                            print("Y");
+                            print(_yes);
                           });
                         },
                       ),
@@ -203,9 +197,8 @@ class _MyFormPageState extends State<MyFormPage> {
                         onChanged: (bool? value) {
                           setState(() {
                             _no = value!;
-                            if (value) {
-                              _yes = false;
-                            }
+                            _contactable = "N";
+                            print(_no);
                           });
                         },
                       ),
@@ -213,7 +206,7 @@ class _MyFormPageState extends State<MyFormPage> {
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.only(top: 25),
+                  margin: const EdgeInsets.only(top: 25),
                   child: SizedBox(
                     height: 48,
                     width: 120,
@@ -230,18 +223,14 @@ class _MyFormPageState extends State<MyFormPage> {
                       ),
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
-                          var map = {};
-                          map['name'] = _name;
-                          map['title'] = _title;
-                          map['description'] = _description;
-                          map['interactive'] = program[index];
-                          data.add(map);
+                          submit(context);
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
                               content: Text('Data berhasil disimpan!'),
                               backgroundColor: Colors.green,
                             ),
                           );
+                          Navigator.pop(context);
                         }
                       },
                     ),
