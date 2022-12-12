@@ -18,7 +18,6 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
-  static const ROUTE_NAME = '/home';
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -36,7 +35,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: const MyHomePage(),
+        home: const LoginPage(),
         routes: {
           "/login": (BuildContext context) => const LoginPage(),
           "/register": (BuildContext context) => const RegisterPage(),
@@ -62,20 +61,6 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-        ),
-      ),
-      floatingActionButton: Align(
-          alignment: Alignment.bottomRight,
-          child: FloatingActionButton(
-            backgroundColor: Colors.blue,
-            onPressed: () {
-              Navigator.of(context).pushNamed('/login');
-            },
-            child: const Icon(Icons.reply_rounded),
-          )),
     );
   }
 }

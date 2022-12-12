@@ -11,7 +11,6 @@ import 'package:proyek_tugas_akhir/user/page/user_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
-  static const ROUTE_NAME = '/login';
 
   @override
   State<LoginPage> createState() => _LoginPageState();
