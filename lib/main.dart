@@ -4,12 +4,12 @@ import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:proyek_tugas_akhir/home%20&%20login/page/registerpage.dart';
 import 'package:proyek_tugas_akhir/home%20&%20login/util/user_provider.dart';
-import 'package:proyek_tugas_akhir/konsultasi-user/fetch/fetch_data.dart';
+import 'package:proyek_tugas_akhir/konsultasi-user/utils/fetch_data.dart';
 import 'package:proyek_tugas_akhir/konsultasi-user/page/form.dart';
 import 'package:proyek_tugas_akhir/konsultasi-user/page/konsultasi_detail.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'konsultasi-user/page/konsultasi_detail.dart';
-import 'konsultasi-user/fetch/fetch_data.dart';
+import 'konsultasi-user/utils/fetch_data.dart';
 import 'home & login/page/loginpage.dart';
 
 void main() {

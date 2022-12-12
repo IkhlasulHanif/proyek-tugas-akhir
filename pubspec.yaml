@@ -48,7 +48,7 @@ flutter_icons:
   Windows: true
   android: true
   ios: true
-  image_path: "assets/Logo_tanpa_tulisan.png"
+  image_path: "assets/logo_tanpa_tulisan.png"
 
 dev_dependencies:
   flutter_test:
