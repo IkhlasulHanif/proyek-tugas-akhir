@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:intl/intl.dart';
 import 'package:proyek_tugas_akhir/consultation_admin/utils/fetch_consultation.dart';
 import 'package:proyek_tugas_akhir/report_user/page/report_detail.dart';
 import 'package:proyek_tugas_akhir/report_user/utils/fetch_report.dart';
+import 'package:provider/provider.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
 
+import '../../konsultasi-user/page/form.dart';
 import '../../konsultasi-user/page/konsultasi_detail.dart';
 import '../../report_user/page/report_form.dart';
 
@@ -77,7 +81,7 @@ class _UserPage extends State<UserPage> {
       // Menambahkan drawer menu
       // drawer: DrawerClass(parentScreen: ScreenName.MyWatchList),
       body: FutureBuilder(
-          future: fetchReport(),
+          future: fetchConsultation(),
           builder: (context, AsyncSnapshot snapshot) {
             if (snapshot.data == null) {
               return const Center(child: CircularProgressIndicator());
@@ -101,16 +105,16 @@ class _UserPage extends State<UserPage> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => DetailKonsultasi(
-                                          user: 
-                                            snapshot.data![index].fields.user,
-                                          title: 
-                                            snapshot.data![index].fields.title,
-                                          date: 
-                                            snapshot.data![index].fields.date,
-                                          name: 
-                                            snapshot.data![index].fields.name,
-                                          description: 
-                                            snapshot.data![index].fields.description,
+                                          user:
+                                              snapshot.data![index].fields.user,
+                                          title: snapshot
+                                              .data![index].fields.title,
+                                          date:
+                                              snapshot.data![index].fields.date,
+                                          name:
+                                              snapshot.data![index].fields.name,
+                                          description: snapshot
+                                              .data![index].fields.description,
                                         )));
                           },
                           child: Container(
@@ -141,21 +145,20 @@ class _UserPage extends State<UserPage> {
                                           fontSize: 16.0,
                                           fontWeight: FontWeight.bold,
                                         )),
-                                    Text(
-                                        "${snapshot.data![index].fields.name}",
+                                    Text("${snapshot.data![index].fields.name}",
                                         style: const TextStyle(
                                           fontSize: 16.0,
                                         )),
-                                      if (snapshot.data![index].fields.description
+                                    if (snapshot.data![index].fields.description
                                             .length >
                                         20)
-                                         Text(
+                                      Text(
                                           "${snapshot.data![index].fields.description.substring(0, 20)}...",
                                           style: const TextStyle(
                                             fontSize: 16.0,
                                           )),
                                     Text(
-                                       "${snapshot.data![index].fields.description}",
+                                        "${snapshot.data![index].fields.description}",
                                         style: const TextStyle(
                                           fontSize: 16.0,
                                         )),
@@ -204,7 +207,7 @@ class _UserPage extends State<UserPage> {
       // Menambahkan drawer menu
       // drawer: DrawerClass(parentScreen: ScreenName.MyWatchList),
       body: FutureBuilder(
-          future: fetchReport(),
+          future: fetchConsultation(),
           builder: (context, AsyncSnapshot snapshot) {
             if (snapshot.data == null) {
               return const Center(child: CircularProgressIndicator());
@@ -329,6 +332,7 @@ class _UserPage extends State<UserPage> {
 
   @override
   Widget build(BuildContext context) {
+    final request = context.watch<CookieRequest>();
     return Scaffold(
         body: Center(child: _widgetOptions.elementAt(_selectedIndex)),
         bottomNavigationBar: BottomNavigationBar(
@@ -356,18 +360,30 @@ class _UserPage extends State<UserPage> {
           currentIndex: _selectedIndex, //New
           onTap: _onItemTapped, //New
         ),
-        floatingActionButton: Align(
-          alignment: Alignment.bottomRight,
-          child: FloatingActionButton(
-            backgroundColor: primaryColor,
-            onPressed: () {
+        floatingActionButton: SpeedDial(
+        child: const Icon(Icons.add),
+        children: [
+          SpeedDialChild(
+            child: const Icon(Icons.insert_comment),
+            label: "Consultation", // Set background biru
+            onTap: () {
+              Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const MyFormPage()));
+            },
+          ),
+          SpeedDialChild(
+            child: const Icon(Icons.description),
+            label: "Report",
+            onTap: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => const ReportForm()),
               );
-            },
-            child: const Icon(Icons.plus_one),
-          ),
+              },
+          )
+        ],
         ));
   }
 }
