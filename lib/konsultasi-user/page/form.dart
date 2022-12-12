@@ -1,18 +1,31 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:proyek_tugas_akhir/konsultasi-user/page/konsultasi_summary.dart';
+import 'package:provider/provider.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
 
-class MyFormPage extends StatefulWidget {
-  const MyFormPage({super.key});
+var data = <Map>[];
+
+class KonsultasiForm extends StatefulWidget {
+  const KonsultasiForm({super.key});
 
   @override
-  State<MyFormPage> createState() => _MyFormPageState();
+  State<KonsultasiForm> createState() => _KonsultasiFormState();
 }
 
-class _MyFormPageState extends State<MyFormPage> {
+class _Konsultasi {
+  String name = "";
+  String title = "";
+  String description = "";
+  String date = "";
+  String contactable = "";
+  _Konsultasi(this.name, this.title, this.description, this.date, this.contactable);
+}
+
+class _KonsultasiFormState extends State<KonsultasiForm> {
   final _formKey = GlobalKey<FormState>();
-  int _user = 0;
-  String _date = "";
+  String _date = "2022-12-13";
   String _name = "";
   String _title = "";
   String _description = "";
@@ -24,25 +37,27 @@ class _MyFormPageState extends State<MyFormPage> {
   List<String> program = ["YES", "NO"];
   int index = -1;
 
-  static const primaryColor = Color(0xFF548AFF);
-  Future<void> submit(BuildContext context) async {
-    final response = await http.post(
-        Uri.parse(
-            'https://web-production-c284.up.railway.app/curhat/add-konsultasi-flutter'),
-        headers: <String, String>{'Content-Type': 'application/json'},
-        body: jsonEncode(<String, dynamic>{
-          'user': _user,
-          'date': _date,
-          'name': _name,
-          'title': _title,
-          'description': _description,
-          'contactable': _contactable,
-          // 'pk': widget.pk,
-        }));
+
+
+  createKonsultasi(request, konsultasi) async{
+    final response = await request.post(
+      'https://web-production-c284.up.railway.app/curhat/add-konsultasi-flutter/', {
+      'name': konsultasi.name,
+      'title': konsultasi.title,
+      'description': konsultasi.description,
+      'contactable': konsultasi.contactable,
+    });
+    return Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => const KonsultasiSummary()),
+    );
   }
+
+  static const primaryColor = Color(0xFF548AFF);
 
   @override
   Widget build(BuildContext context) {
+    final request = context.watch<CookieRequest>();
     index = _yes
         ? 0
         : _no
@@ -222,14 +237,13 @@ class _MyFormPageState extends State<MyFormPage> {
                       ),
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
-                          submit(context);
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                              content: Text('Data berhasil disimpan!'),
-                              backgroundColor: Colors.green,
-                            ),
-                          );
-                          Navigator.pop(context);
+                          final _konsultasi = new _Konsultasi(
+                              _name,
+                              _date,
+                              _title,
+                              _description,
+                              _contactable);
+                          createKonsultasi(request, _konsultasi);
                         }
                       },
                     ),
