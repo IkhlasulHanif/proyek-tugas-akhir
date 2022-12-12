@@ -95,9 +95,8 @@ class _LoginPageState extends State<LoginPage> {
                           Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                  builder: ((context) => const UserPage(
-                                        title: '',
-                                      ))));
+                                  builder: ((context) =>
+                                      const ReportSummary())));
                         }
                       } catch (_) {
                         print("error");
