@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'package:proyek_tugas_akhir/konsultasi-user/page/form.dart';
 
 class DetailKonsultasi extends StatefulWidget {
@@ -25,6 +24,7 @@ class DetailKonsultasi extends StatefulWidget {
 
 class _DetailKonsultasiState extends State<DetailKonsultasi> {
   static const primaryColor = Color(0xFF548AFF);
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -70,18 +70,6 @@ class _DetailKonsultasiState extends State<DetailKonsultasi> {
             ],
           ),
         ),
-        floatingActionButton: Align(
-          alignment: Alignment.bottomRight,
-          child: FloatingActionButton(
-            backgroundColor: primaryColor,
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const MyFormPage()),
-              );
-            },
-            child: const Icon(Icons.reply_rounded),
-          ),
-        ));
+        );
   }
 }

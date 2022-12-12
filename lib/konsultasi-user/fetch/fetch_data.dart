@@ -4,8 +4,7 @@ import 'package:proyek_tugas_akhir/consultation_admin/model/consultation_model.d
 import 'package:proyek_tugas_akhir/consultation_admin/model/reply_model.dart';
 
 Future<List<Consultation>> fetchConsultation() async {
-  var url =
-      Uri.parse('https://web-production-c284.up.railway.app/curhat/json');
+  var url = Uri.parse('https://web-production-c284.up.railway.app/curhat/json');
   var response = await http.get(
     url,
     headers: {

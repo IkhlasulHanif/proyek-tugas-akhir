@@ -4,14 +4,14 @@
 
 import 'dart:convert';
 
-List<Consultation> consultationFromJson(String str) => List<Consultation>.from(
-    json.decode(str).map((x) => Consultation.fromJson(x)));
+List<Konsultasi> konsultationFromJson(String str) => List<Konsultasi>.from(
+    json.decode(str).map((x) => Konsultasi.fromJson(x)));
 
-String consultationToJson(List<Consultation> data) =>
+String konsultasiToJson(List<Konsultasi> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
-class Consultation {
-  Consultation({
+class Konsultasi {
+  Konsultasi({
     required this.pk,
     required this.fields,
   });
@@ -19,7 +19,7 @@ class Consultation {
   int pk;
   Fields fields;
 
-  factory Consultation.fromJson(Map<String, dynamic> json) => Consultation(
+  factory Konsultasi.fromJson(Map<String, dynamic> json) => Konsultasi(
         pk: json["pk"],
         fields: Fields.fromJson(json["fields"]),
       );
@@ -40,12 +40,12 @@ class Fields {
     required this.contactable,
   });
 
-  String user;
+  int user;
   DateTime date;
   String name;
   String title;
   String description;
-  bool contactable;
+  String contactable;
 
   factory Fields.fromJson(Map<String, dynamic> json) => Fields(
         user: json["user"],

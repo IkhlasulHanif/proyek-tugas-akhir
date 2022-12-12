@@ -1,25 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:proyek_tugas_akhir/consultation_admin/utils/fetch_consultation.dart';
-import 'package:proyek_tugas_akhir/report_user/model/report_model.dart';
-import 'package:intl/intl.dart';
+import 'package:proyek_tugas_akhir/konsultasi-user/page/konsultasi_detail.dart';
+import 'package:proyek_tugas_akhir/konsultasi-user/model/konsultasi_model.dart';
 import 'package:proyek_tugas_akhir/report_user/utils/fetch_report.dart';
-import 'package:proyek_tugas_akhir/report_user/page/report_detail.dart';
-import 'package:proyek_tugas_akhir/user/page/drawer.dart';
-import 'package:proyek_tugas_akhir/user/page/user_page.dart';
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 
-import 'report_form.dart';
+import 'form.dart';
 
-class ReportSummary extends StatefulWidget {
-  const ReportSummary({super.key});
+class KonsultasiSummary extends StatefulWidget {
+  const KonsultasiSummary({super.key});
 
   @override
-  State<ReportSummary> createState() => _ReportSummaryState();
+  State<KonsultasiSummary> createState() => _KonsultasiSummaryState();
 }
 
-class _ReportSummaryState extends State<ReportSummary> {
-  late Future<List<Report>> futureData;
+class _KonsultasiSummaryState extends State<KonsultasiSummary> {
+  late Future<List<Konsultasi>> futureData;
 
   static const primaryColor = Color(0xFF548AFF);
 
@@ -28,10 +24,9 @@ class _ReportSummaryState extends State<ReportSummary> {
     final request = context.watch<CookieRequest>();
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Report Summary'),
+          title: const Text('Konsultasi Summary'),
           backgroundColor: primaryColor,
         ),
-        drawer: DrawerWidget(),
         // Menambahkan drawer menu
         // drawer: DrawerClass(parentScreen: ScreenName.MyWatchList),
         body: FutureBuilder(
@@ -59,27 +54,17 @@ class _ReportSummaryState extends State<ReportSummary> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => ReportDetail(
+                                      builder: (context) => DetailKonsultasi(
                                             name: snapshot
                                                 .data![index].fields.name,
                                             user: snapshot
                                                 .data![index].fields.user,
-                                            phoneNum: snapshot
-                                                .data![index].fields.phoneNum,
-                                            email: snapshot
-                                                .data![index].fields.email,
-                                            caseName: snapshot
-                                                .data![index].fields.caseName,
-                                            victimName: snapshot
-                                                .data![index].fields.victimName,
-                                            victimDescription: snapshot
-                                                .data![index]
-                                                .fields
-                                                .victimDescription,
-                                            crimePlace: snapshot
-                                                .data![index].fields.crimePlace,
-                                            chronology: snapshot
-                                                .data![index].fields.chronology,
+                                            title: snapshot
+                                                .data![index].fields.title,
+                                            description: snapshot
+                                                .data![index].fields.description,
+                                            date: snapshot
+                                                .data![index].fields.date,
                                           )));
                             },
                             child: Container(
@@ -165,7 +150,7 @@ class _ReportSummaryState extends State<ReportSummary> {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => ReportForm()),
+                MaterialPageRoute(builder: (context) => KonsultasiForm()),
               ).then((_) => setState(() {}));
             },
             child: const Icon(Icons.reply_rounded),
