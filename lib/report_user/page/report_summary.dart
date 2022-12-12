@@ -4,6 +4,7 @@ import 'package:proyek_tugas_akhir/report_user/model/report_model.dart';
 import 'package:intl/intl.dart';
 import 'package:proyek_tugas_akhir/report_user/utils/fetch_report.dart';
 import 'package:proyek_tugas_akhir/report_user/page/report_detail.dart';
+import 'package:proyek_tugas_akhir/user/page/drawer.dart';
 import 'package:proyek_tugas_akhir/user/page/user_page.dart';
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
@@ -30,6 +31,7 @@ class _ReportSummaryState extends State<ReportSummary> {
           title: const Text('Report Summary'),
           backgroundColor: primaryColor,
         ),
+        drawer: DrawerWidget(),
         // Menambahkan drawer menu
         // drawer: DrawerClass(parentScreen: ScreenName.MyWatchList),
         body: FutureBuilder(
