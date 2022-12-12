@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:intl/intl.dart';
-import 'package:proyek_tugas_akhir/konsultasi-user/fetch/fetch_data.dart';
+import 'package:proyek_tugas_akhir/konsultasi-user/utils/fetch_data.dart';
 import 'package:proyek_tugas_akhir/report_user/page/report_detail.dart';
 import 'package:proyek_tugas_akhir/report_user/utils/fetch_report.dart';
 import 'package:provider/provider.dart';
