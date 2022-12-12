@@ -11,13 +11,13 @@ class StatusLaporan {
   static List<String> listStatus = [];
 }
 
-void getStatus() async{
+void getStatus() async {
   List<ResponseLaporan> allResponse = await fetchAllResponse();
-  for(var i =0; i < allResponse.length; i ++){
+  for (var i = 0; i < allResponse.length; i++) {
     String value = allResponse[i].fields.statusCase;
-    if(value == "null") StatusLaporan.listStatus.add("Waiting");
-    if(value == "true") StatusLaporan.listStatus.add("On Process");
-    if(value == "false") StatusLaporan.listStatus.add("Rejected");
+    if (value == "null") StatusLaporan.listStatus.add("Waiting");
+    if (value == "true") StatusLaporan.listStatus.add("On Process");
+    if (value == "false") StatusLaporan.listStatus.add("Rejected");
   }
 }
 
@@ -86,7 +86,7 @@ class _AdminPageState extends State<AdminPage> {
           width: 100,
           height: 40,
           child: Image.asset(
-            'assets/LOGO.png',
+            'assets/logo.png',
           ),
         ),
         backgroundColor: primaryColor,
@@ -411,20 +411,22 @@ class _AdminPageState extends State<AdminPage> {
                                           pk: snapshot.data![index].pk,
                                           name:
                                               snapshot.data![index].fields.name,
-                                          phoneNum:
-                                              snapshot.data![index].fields.phoneNum,
-                                          email:
-                                              snapshot.data![index].fields.email,
-                                          caseName:
-                                              snapshot.data![index].fields.caseName,
-                                          victimName:
-                                              snapshot.data![index].fields.victimName,
-                                          victimDescription:
-                                              snapshot.data![index].fields.victimDescription,
-                                          crimePlace:
-                                              snapshot.data![index].fields.crimePlace,
-                                          chronology:
-                                              snapshot.data![index].fields.chronology,
+                                          phoneNum: snapshot
+                                              .data![index].fields.phoneNum,
+                                          email: snapshot
+                                              .data![index].fields.email,
+                                          caseName: snapshot
+                                              .data![index].fields.caseName,
+                                          victimName: snapshot
+                                              .data![index].fields.victimName,
+                                          victimDescription: snapshot
+                                              .data![index]
+                                              .fields
+                                              .victimDescription,
+                                          crimePlace: snapshot
+                                              .data![index].fields.crimePlace,
+                                          chronology: snapshot
+                                              .data![index].fields.chronology,
                                         )));
                           },
                           child: Container(
@@ -449,13 +451,14 @@ class _AdminPageState extends State<AdminPage> {
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text( 
+                                    Text(
                                         "${snapshot.data![index].fields.caseName}",
                                         style: const TextStyle(
                                           fontSize: 16.0,
                                           fontWeight: FontWeight.bold,
                                         )),
-                                    Text("${snapshot.data![index].fields.crimePlace}",
+                                    Text(
+                                        "${snapshot.data![index].fields.crimePlace}",
                                         style: const TextStyle(
                                           fontSize: 16.0,
                                         )),
@@ -500,8 +503,7 @@ class _AdminPageState extends State<AdminPage> {
                                           Radius.circular(7),
                                         ),
                                       ),
-                                      child: 
-                                      Text(
+                                      child: Text(
                                         'Delete',
                                         style: TextStyle(
                                           color: Colors.red,

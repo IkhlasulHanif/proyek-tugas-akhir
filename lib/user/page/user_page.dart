@@ -79,7 +79,7 @@ class _UserPage extends State<UserPage> {
           width: 100,
           height: 40,
           child: Image.asset(
-            'assets/LOGO.png',
+            'assets/logo.png',
           ),
         ),
         backgroundColor: primaryColor,

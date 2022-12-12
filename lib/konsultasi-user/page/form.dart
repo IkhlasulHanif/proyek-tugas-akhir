@@ -20,7 +20,8 @@ class _Konsultasi {
   String description = "";
   String date = "";
   String contactable = "";
-  _Konsultasi(this.name, this.title, this.description, this.date, this.contactable);
+  _Konsultasi(
+      this.name, this.title, this.description, this.date, this.contactable);
 }
 
 class _KonsultasiFormState extends State<KonsultasiForm> {
@@ -37,16 +38,15 @@ class _KonsultasiFormState extends State<KonsultasiForm> {
   List<String> program = ["YES", "NO"];
   int index = -1;
 
-
-
-  createKonsultasi(request, konsultasi) async{
+  createKonsultasi(request, konsultasi) async {
     final response = await request.post(
-      'https://web-production-c284.up.railway.app/curhat/add-konsultasi-flutter/', {
-      'name': konsultasi.name,
-      'title': konsultasi.title,
-      'description': konsultasi.description,
-      'contactable': konsultasi.contactable,
-    });
+        'https://web-production-c284.up.railway.app/curhat/add-konsultasi-flutter/',
+        {
+          'name': konsultasi.name,
+          'title': konsultasi.title,
+          'description': konsultasi.description,
+          'contactable': konsultasi.contactable,
+        });
     return Navigator.pushReplacement(
       context,
       MaterialPageRoute(builder: (context) => const KonsultasiSummary()),
@@ -238,11 +238,7 @@ class _KonsultasiFormState extends State<KonsultasiForm> {
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
                           final _konsultasi = new _Konsultasi(
-                              _name,
-                              _date,
-                              _title,
-                              _description,
-                              _contactable);
+                              _name, _date, _title, _description, _contactable);
                           createKonsultasi(request, _konsultasi);
                         }
                       },
