@@ -4,8 +4,7 @@ import 'package:proyek_tugas_akhir/consultation_admin/model/consultation_model.d
 import 'package:proyek_tugas_akhir/consultation_admin/model/reply_model.dart';
 
 Future<List<Consultation>> fetchConsultation() async {
-  var url =
-      Uri.parse('https://web-production-c284.up.railway.app/curhat/json');
+  var url = Uri.parse('http://127.0.0.1:8000/curhat/json');
   var response = await http.get(
     url,
     headers: {
@@ -26,8 +25,7 @@ Future<List<Consultation>> fetchConsultation() async {
 }
 
 Future<List<Reply>> fetchReply(int id) async {
-  var url = Uri.parse(
-      'https://web-production-c284.up.railway.app/curhat-admin/reply-json/$id');
+  var url = Uri.parse('http://127.0.0.1:8000/curhat-admin/reply-json/$id');
   var response = await http.get(
     url,
     headers: {
@@ -47,8 +45,7 @@ Future<List<Reply>> fetchReply(int id) async {
 
 Future<http.Response> deleteConsultation(String id) async {
   final http.Response response = await http.delete(
-    Uri.parse(
-        'https://web-production-c284.up.railway.app/curhat-admin/delete-json-flutter/$id'),
+    Uri.parse('http://127.0.0.1:8000/curhat-admin/delete-json-flutter/$id'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },

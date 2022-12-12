@@ -22,8 +22,7 @@ class _ConsultationReplyFormState extends State<ConsultationReplyForm> {
 
   Future<void> submit(BuildContext context) async {
     final response = await http.post(
-        Uri.parse(
-            'https://web-production-c284.up.railway.app/curhat-admin/add-reply-flutter'),
+        Uri.parse('http://127.0.0.1:8000/curhat-admin/add-reply-flutter'),
         headers: <String, String>{'Content-Type': 'application/json'},
         body: jsonEncode(<String, dynamic>{
           'title': _title,

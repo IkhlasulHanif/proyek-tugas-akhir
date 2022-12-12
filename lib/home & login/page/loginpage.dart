@@ -93,12 +93,11 @@ class _LoginPageState extends State<LoginPage> {
                   onPressed: () async {
                     if (_loginFormKey.currentState!.validate()) {
                       try {
-                        final response = await request.login(
-                            "https://web-production-c284.up.railway.app/user-details/",
-                            {
-                              'username': username,
-                              'password': password1,
-                            });
+                        final response = await request
+                            .login("http://127.0.0.1:8000/user-details/", {
+                          'username': username,
+                          'password': password1,
+                        });
                         if (request.loggedIn) {
                           var loginuser = UserLogin.fromJson(response["data"]);
                           user.setUser(loginuser);
@@ -115,9 +114,8 @@ class _LoginPageState extends State<LoginPage> {
                             Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                    builder: ((context) => const UserPage(
-                                          title: '',
-                                        ))));
+                                    builder: ((context) =>
+                                        const ReportSummary())));
                           }
                         }
                       } catch (_) {

@@ -163,10 +163,10 @@ class _ReportSummaryState extends State<ReportSummary> {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const ReportForm()),
-              );
+                MaterialPageRoute(builder: (context) => ReportForm()),
+              ).then((_) => setState(() {}));
             },
-            child: const Icon(Icons.report),
+            child: const Icon(Icons.reply_rounded),
           ),
         ));
   }
