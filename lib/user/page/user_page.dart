@@ -222,15 +222,20 @@ class _UserPage extends State<UserPage> {
                         fontFamily: 'Poppins', fontWeight: FontWeight.w400),
                   ),
                 ),
-                FloatingActionButton(
-                    child: Icon(Icons.logout_rounded),
-                    onPressed: () async {
-                      user.removeUser();
-                      Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: ((context) => const LoginPage())));
-                    }),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    FloatingActionButton(
+                        child: Icon(Icons.logout_rounded),
+                        onPressed: () async {
+                          user.removeUser();
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: ((context) => const LoginPage())));
+                        }),
+                  ],
+                ),
               ],
             ))
           ],
