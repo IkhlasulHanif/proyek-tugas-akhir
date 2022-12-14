@@ -95,3 +95,10 @@ Pembagian tugas:
 5. Memanfaatkan http.get yang mengarah pada enpoint data pada web untuk proses pengambilan data.
 6. Memanfaatkan http.post yang mengarah pada endpoint penyimpanan/pembuatan data agar data dapat disimpan pada database django.
 
+Event Handling:
+1. Home page
+2. User page
+   -  Fitur laporan <br>
+      - pada fitur report summary, saat item ditekan dengan memanfaatkan event handler onTap(), maka halaman akan diredirect dengan memanfaatkan Navigator.push ke halaman detail report dengan mengirimkan data-data yang diperlukan.
+      - pada fitur report summary terdapat floating button, saat ditekan dengan memanfaatkan event hanndler on Pressed, maka halaman akan diredirect ke halaman form dengan memanfaatkan Navigator.push.
+      - pada fitur form terdapat button untuk mensubmit laporan, saat ditekan dengan memanfaatkan event handler on Pressed, maka data pada form akan divalidasi dan kemudian diambil untuk disimpan pada objek laporan yang nantinya akan di POST ke database di railway melalui backend django.
