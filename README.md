@@ -1,6 +1,8 @@
 [![Pre-Release](https://github.com/IkhlasulHanif/proyek-tugas-akhir/actions/workflows/pre-release.yml/badge.svg)](https://github.com/KingGedorah/share-eat/actions/workflows/pre-release.yaml)
 [![Release](https://github.com/IkhlasulHanif/proyek-tugas-akhir/actions/workflows/release.yml/badge.svg)](https://github.com/IkhlasulHanif/proyek-tugas-akhir/actions/workflows/release.yml) 
 
+[Link APK](https://drive.google.com/drive/u/3/folders/1j8hB_6BCEZ9d9NPGbEc2KY8UA6zQFPyW)
+
 ### Tugas Kelompok Akhir Semester Pemrograman Berbasis Platform Kelompok D03
 ---
 # Speak Up Now
