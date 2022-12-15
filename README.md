@@ -99,6 +99,10 @@ Pembagian tugas:
 
 Event Handling:
 1. Home page
+   -  Fitur Autentikasi <br>
+      - Dalam fitur ini, pengguna aplikasi perlu melakukan proses autentikasi/login akun untuk menuju ke halaman homepage atau halaman utama. Dalam pemakaiannya, pengguna aplikasi akan diminta untuk mengisi username dan password di kolom yang sudah disediakan dalam aplikasi dan menekan tombol 'Login' sehingga form yang telah terisi dapat di verifikasi oleh sistem. Proses verifikasi ini menggunakan pengiriman data dari aplikasi menuju database Railway melalui backend Django dengan metode POST. Apabila form sesuai dengan database atau valid, pengguna aplikasi kemudian akan diarahkan meunuju halaman utama. Namun, apabila form tidak sesuai atau tidak valid, pengguna aplikasi akan diminta untuk mengisi kembali form sampai sistem memberikan otorisasi.
+   -  Fitur Homepage <br>
+      - Pada fitur ini, pengguna aplikasi diberikan penjelasan singkat mengenai visi/misi dan tujuan dari SpeakUpNow. Selain itu, disediakan juga navigation bar untuk akses ke halaman-halaman berikutnya. Adapun penambahan floating button sehingga pengguna aplikasi dapat logout/keluar dari aplikasi.<br>
 2. User page
    -  Fitur laporan <br>
       - pada fitur report summary, saat item ditekan dengan memanfaatkan event handler onTap(), maka halaman akan diredirect dengan memanfaatkan Navigator.push ke halaman detail report dengan mengirimkan data-data yang diperlukan.
