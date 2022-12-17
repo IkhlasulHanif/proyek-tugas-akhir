@@ -108,3 +108,8 @@ Event Handling:
       - pada fitur report summary, saat item ditekan dengan memanfaatkan event handler onTap(), maka halaman akan diredirect dengan memanfaatkan Navigator.push ke halaman detail report dengan mengirimkan data-data yang diperlukan.
       - pada fitur report summary terdapat floating button, saat ditekan dengan memanfaatkan event hanndler on Pressed, maka halaman akan diredirect ke halaman form dengan memanfaatkan Navigator.push.
       - pada fitur form terdapat button untuk mensubmit laporan, saat ditekan dengan memanfaatkan event handler on Pressed, maka data pada form akan divalidasi dan kemudian diambil untuk disimpan pada objek laporan yang nantinya akan di POST ke database di railway melalui backend django.
+3. Admin page
+    - Fitur Konsultasi <br>
+      - Pada fitur consultation summary, terdapat list yang berisi konsultasi yang dikirimkan oleh semua user. Satu cell bisa ditekan dengan menggunakan event handler onTap(), dan akan mengarahkan halaman menggunakan Navigator.push() ke halaman detail konsultasi dengan mengirimkan data-data yang diperlukan.
+      - Pada fitur consultation detail, terdapat FloatingActionButton yang ketika ditekan dengan memanfaatkan event handler onPressed(), akan mengarahkan halaman menggunakan Navigator.push() ke halaman reply consultation form.
+      - Pada fitur reply consultation form, terdapat button send reply yang ketika ditekan dengan memanfaatkan event handler onPressed(), akan memvalidasi data yang ada pada form dan apabila data yang diinput valid, maka data tersebut akan disimpan pada objek reply yang nantinya akan dilakukan POST ke database di railway melalui django. 
